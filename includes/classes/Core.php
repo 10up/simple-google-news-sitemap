@@ -48,7 +48,7 @@ class Core {
 	 *
 	 * @return void
 	 */
-	public function create_rewrites(): void {
+	public function create_rewrites() {
 		add_rewrite_tag( '%news-sitemap%', 'true' );
 		add_rewrite_rule( '^news-sitemap.xml$', 'index.php?news-sitemap=true', 'top' );
 

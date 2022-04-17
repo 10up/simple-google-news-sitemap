@@ -12,7 +12,7 @@ $links = apply_filters( 'tenup_google_news_sitemaps_data', $links );
 
 // Used for publication name and language.
 $publication = get_bloginfo( 'name' );
-$language = get_bloginfo( 'language' );
+$language    = get_bloginfo( 'language' );
 
 if ( empty( $links ) ) {
 	$links = [];
@@ -32,7 +32,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 		if ( empty( $link['url'] ) ) {
 			continue;
 		}
-	?>
+		?>
 		<url>
 			<loc><?php echo esc_url( $link['url'] ); ?></loc>
 			<news:news>
@@ -41,11 +41,11 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 					<news:language><?php echo esc_html( $language ); ?></news:language>
 				</news:publication>
 
-				<news:publication_date><?php echo esc_html( date( 'Y-m-d', $link['modified'] ) ); ?></news:publication_date>
+				<news:publication_date><?php echo esc_html( date( 'Y-m-d', $link['modified'] ) ); // phpcs:ignore ?></news:publication_date>
 				<news:title><?php echo esc_html( $link['title'] ); ?></news:title>
 			</news:news>
 		</url>
-	<?php
+		<?php
 
 	endforeach;
 

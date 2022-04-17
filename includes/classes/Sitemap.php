@@ -41,7 +41,7 @@ class Sitemap {
 	 * Create a new empty sitemap.
 	 */
 	public function __construct() {
-		$this->range = date( 'Y-m-d H:i:s', strtotime( '-' . (int) $this->range . ' day' ) );
+		$this->range = date( 'Y-m-d H:i:s', strtotime( '-' . (int) $this->range . ' day' ) ); // phpcs:ignore
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Sitemap {
 	 *
 	 * @return void
 	 */
-	public function build(): void {
+	public function build() {
 		global $wpdb;
 
 		$args = [
@@ -126,7 +126,7 @@ class Sitemap {
 	 *
 	 * @return void
 	 */
-	private function stop_the_insanity(): void {
+	private function stop_the_insanity() {
 		global $wpdb, $wp_object_cache;
 
 		$one_hundred_mb = 104857600;
