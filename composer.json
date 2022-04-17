@@ -1,0 +1,27 @@
+
+{
+  "name": "10up/google-news-sitemaps",
+  "authors": [
+    {
+      "name": "10up",
+      "email": "info@10up.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "10up/phpcs-composer": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "TenupGoogleNewsSitemaps\\": "includes/classes/"
+    }
+  },
+  "scripts": {
+    "lint": "phpcs .",
+    "lint-fix": "phpcbf ."
+  }
+}
