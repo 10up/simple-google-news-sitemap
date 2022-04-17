@@ -17,6 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Core {
 
 	/**
+	 * News sitemap slug.
+	 *
+	 * @var string
+	 */
+	private $sitemap_slug = 'news-sitemap';
+
+	/**
 	 * Setup hooks.
 	 */
 	public function __construct() {
@@ -36,7 +43,7 @@ class Core {
 	 * @return string
 	 */
 	public function load_sitemap_template( string $template ): string {
-		if ( 'true' === get_query_var( 'news-sitemap' ) ) {
+		if ( 'true' === get_query_var( $this->sitemap_slug ) ) {
 			return dirname( __DIR__ ) . '/templates/google-news-sitemap.php';
 		}
 
@@ -49,8 +56,8 @@ class Core {
 	 * @return void
 	 */
 	public function create_rewrites() {
-		add_rewrite_tag( '%news-sitemap%', 'true' );
-		add_rewrite_rule( '^news-sitemap.xml$', 'index.php?news-sitemap=true', 'top' );
+		add_rewrite_tag( '%' . $this->sitemap_slug . '%', 'true' );
+		add_rewrite_rule( sprintf( '^%s.xml$', $this->sitemap_slug ), sprintf( 'index.php?%s=true', $this->sitemap_slug ), 'top' );
 
 		add_action( 'redirect_canonical', [ $this, 'disable_canonical_redirects_for_sitemap_xml' ], 10, 2 );
 	}
@@ -64,7 +71,7 @@ class Core {
 	 * @return array|null
 	 */
 	public function disable_main_query_for_sitemap_xml( $posts, \WP_Query $query ) {
-		if ( $query->is_main_query() && ! empty( $query->query_vars['news-sitemap'] ) ) {
+		if ( $query->is_main_query() && ! empty( $query->query_vars[ $this->sitemap_slug ] ) ) {
 			$posts = [];
 		}
 
@@ -80,7 +87,7 @@ class Core {
 	 * @return string URL to redirect
 	 */
 	public function disable_canonical_redirects_for_sitemap_xml( string $redirect_url, string $requested_url ): string {
-		if ( preg_match( '/news-sitemap.xml/i', $requested_url ) ) {
+		if ( preg_match( sprintf( '/%s.xml/i', $this->sitemap_slug ), $requested_url ) ) {
 			return $requested_url;
 		}
 
@@ -95,8 +102,8 @@ class Core {
 	 * @return string
 	 */
 	public function add_sitemap_robots_txt( string $output ): string {
-		$url     = site_url( '/news-sitemap.xml' );
-		$output .= "\nNews Sitemap: {$url}\n";
+		$url     = site_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
+		$output .= "\n" . esc_html__( 'News Sitemap', 'tenup-google-news-sitemaps' ) . ": {$url}\n";
 
 		return $output;
 	}
