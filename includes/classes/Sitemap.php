@@ -17,21 +17,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Sitemap {
 
 	/**
-	 * News items to be included in the sitemap
+	 * News items to be included in the sitemap.
 	 *
 	 * @var array
 	 */
 	private $data;
 
 	/**
-	 * Range of news items to include in the sitemap e.g. 2 days
+	 * Range of news items to include in the sitemap e.g. 2 days.
 	 *
 	 * @var int
 	 */
 	private $range = 2;
 
 	/**
-	 * Items to process in each DB cycle
+	 * Items to process in each DB cycle.
 	 *
 	 * @var int
 	 */
@@ -46,8 +46,10 @@ class Sitemap {
 
 	/**
 	 * Build news items sitemap.
+	 *
+	 * @return void
 	 */
-	public function build() {
+	public function build(): void {
 		global $wpdb;
 
 		$args = [
@@ -102,7 +104,7 @@ class Sitemap {
 	}
 
 	/**
-	 * Get range
+	 * Get data range.
 	 *
 	 * @return string
 	 */
@@ -111,7 +113,7 @@ class Sitemap {
 	}
 
 	/**
-	 * Get sitemap data
+	 * Get sitemap data.
 	 *
 	 * @return array
 	 */
@@ -120,9 +122,11 @@ class Sitemap {
 	}
 
 	/**
-	 * Clear all of the caches for memory management
+	 * Clear all of the caches for memory management.
+	 *
+	 * @return void
 	 */
-	private function stop_the_insanity() {
+	private function stop_the_insanity(): void {
 		global $wpdb, $wp_object_cache;
 
 		$one_hundred_mb = 104857600;
