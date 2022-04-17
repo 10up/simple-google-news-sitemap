@@ -61,9 +61,9 @@ class Core {
 	 * @param array|null $posts array of post data or null.
 	 * @param \WP_Query  $query The WP_Query instance.
 	 *
-	 * @return array
+	 * @return array|null
 	 */
-	public function disable_main_query_for_sitemap_xml( $posts, \WP_Query $query ): array {
+	public function disable_main_query_for_sitemap_xml( $posts, \WP_Query $query ) {
 		if ( $query->is_main_query() && ! empty( $query->query_vars['news-sitemap'] ) ) {
 			$posts = [];
 		}
