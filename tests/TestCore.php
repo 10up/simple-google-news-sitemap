@@ -19,9 +19,7 @@ class TestCore extends WP_UnitTestCase {
 		global $wp_rewrite;
 
 		$wp_rewrite->set_permalink_structure('/%postname%/');
-
 		update_option( "rewrite_rules", true );
-
 		$wp_rewrite->flush_rules( true );
 	}
 
