@@ -1,4 +1,3 @@
-
 {
   "name": "10up/google-news-sitemaps",
   "authors": [
@@ -13,7 +12,9 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "10up/phpcs-composer": "dev-master"
+    "10up/phpcs-composer": "dev-master",
+    "phpunit/phpunit": "^7",
+    "yoast/phpunit-polyfills": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -22,6 +23,13 @@
   },
   "scripts": {
     "lint": "phpcs .",
-    "lint-fix": "phpcbf ."
+    "lint-fix": "phpcbf .",
+    "test": "phpunit",
+    "setup-local-tests": "bash bin/install-wp-tests.sh tgns_wp_test root password mysql latest true"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
