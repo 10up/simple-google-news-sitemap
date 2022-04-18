@@ -67,4 +67,9 @@ function register_post_types() {
 	register_post_type( 'tsm_test_private', $args );
 }
 
+require_once dirname( __DIR__ ) . '/vendor/autoload.php';
+require_once dirname( __DIR__ ) . '/vendor/antecedent/patchwork/Patchwork.php';
 require_once $_tests_dir . '/includes/bootstrap.php';
+
+\WP_Mock::setUsePatchwork( true );
+\WP_Mock::bootstrap();

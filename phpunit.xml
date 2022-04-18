@@ -6,12 +6,13 @@
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
 	>
-		<php>
-				<const name="WP_TESTS_MULTISITE" value="1" />
-				<ini name="error_reporting" value="24575" />
-		</php>
+	<php>
+		<const name="WP_TESTS_MULTISITE" value="1" />
+		<ini name="error_reporting" value="24575" />
+	</php>
+
 	<testsuites>
-		<testsuite name="elasticpress">
+		<testsuite name="sitemaps">
 			<directory prefix="Test" suffix=".php">./tests/</directory>
 		</testsuite>
 	</testsuites>

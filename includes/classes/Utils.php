@@ -44,7 +44,7 @@ class Utils {
 	 *
 	 * @return boolean True if the value was set, false otherwise.
 	 */
-	public static function set_cache( array $data ): bool {
+	public static function set_cache( $data ): bool {
 		if ( defined( 'WP_CACHE' ) && WP_CACHE ) {
 			return wp_cache_set( self::$cache_key, $data, self::$cache_group, self::$cache_expiry * DAY_IN_SECONDS );
 		} else {
@@ -57,7 +57,7 @@ class Utils {
 	 *
 	 * @return array
 	 */
-	public static function get_cache(): array {
+	public static function get_cache() {
 		if ( defined( 'WP_CACHE' ) && WP_CACHE ) {
 			$data = wp_cache_get( self::$cache_key, self::$cache_group );
 		} else {

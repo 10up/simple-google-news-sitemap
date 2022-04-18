@@ -21,7 +21,7 @@ class Sitemap {
 	 *
 	 * @var array
 	 */
-	private $data;
+	private $data = [];
 
 	/**
 	 * Range of news items to include in the sitemap e.g. 2 days.
