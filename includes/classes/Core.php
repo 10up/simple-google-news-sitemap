@@ -33,6 +33,7 @@ class Core {
 
 		add_action( 'init', [ $this, 'create_rewrites' ] );
 		add_action( 'publish_post', [ $this, 'purge_sitemap_data' ] );
+		add_action( 'publish_post', [ $this, 'ping_google' ] );
 	}
 
 	/**
@@ -115,6 +116,38 @@ class Core {
 	 */
 	public function purge_sitemap_data(): bool {
 		return Utils::delete_cache();
+	}
+
+	/**
+	 * Ping Google News after a news post is published.
+	 *
+	 * @return boolean
+	 */
+	public function ping_google(): bool {
+		if ( false === apply_filters( 'tenup_google_news_sitemaps_ping', true ) ) {
+			return false;
+		}
+
+		if ( '0' === get_option( 'blog_public' ) ) {
+			return false;
+		}
+
+		// Sitemap URL.
+		$url = site_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
+
+		// Ping Google.
+		$ping = wp_remote_get( sprintf( 'https://www.google.com/ping?sitemap=%s', esc_url_raw( $url ) ), [ 'blocking' => false ] );
+
+		if ( ! is_array( $ping ) || is_wp_error( $ping ) ) {
+			return false;
+		}
+
+		// Successful request only if the response code is 200.
+		if ( 200 === wp_remote_retrieve_response_code( $ping ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
