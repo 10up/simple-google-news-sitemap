@@ -24,18 +24,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 spl_autoload_register(
 	function( $class ) {
-			// Project-specific namespace prefix.
-			$prefix = 'TenupGoogleNewsSitemaps\\';
-			// Base directory for the namespace prefix.
-			$base_dir = __DIR__ . '/includes/classes/';
-			// Does the class use the namespace prefix?
-			$len = strlen( $prefix );
+		// Project-specific namespace prefix.
+		$prefix = 'TenupGoogleNewsSitemaps\\';
+		// Base directory for the namespace prefix.
+		$base_dir = __DIR__ . '/includes/classes/';
+		// Does the class use the namespace prefix?
+		$len = strlen( $prefix );
 		if ( strncmp( $prefix, $class, $len ) !== 0 ) {
 			return;
 		}
-			$relative_class = substr( $class, $len );
-			$file           = $base_dir . str_replace( '\\', '/', $relative_class ) . '.php';
-			// If the file exists, require it.
+		$relative_class = substr( $class, $len );
+		$file           = $base_dir . str_replace( '\\', '/', $relative_class ) . '.php';
+		// If the file exists, require it.
 		if ( file_exists( $file ) ) {
 			require $file;
 		}

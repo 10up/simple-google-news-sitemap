@@ -126,6 +126,8 @@ class TestCore extends WP_UnitTestCase {
 	public function testPingGooglePrivateBlog() {
 		$core = new Core();
 
+		add_filter( 'tenup_google_news_sitemaps_ping', '__return_true' );
+
 		\WP_Mock::userFunction(
 			'get_option',
 			[
@@ -158,6 +160,41 @@ class TestCore extends WP_UnitTestCase {
 		);
 
 		$this->assertFalse( $core->ping_google() );
+	}
+
+	/**
+	 * Pings google service for newly updated sitemap.
+	 * Valid response received.
+	 */
+	public function testPingGoogleValidResponse() {
+		$core = new Core();
+
+		\WP_Mock::userFunction(
+			'get_option',
+			[
+				'return' => '1'
+			]
+		);
+
+		\WP_Mock::userFunction(
+			'wp_remote_get',
+			[
+				'return' => [
+					'response' => [
+						'code' => 200
+					]
+				]
+			]
+		);
+
+		\WP_Mock::userFunction(
+			'is_wp_error',
+			[
+				'return' => false
+			]
+		);
+
+		$this->assertTrue( $core->ping_google() );
 	}
 
 }
