@@ -31,6 +31,13 @@ class Sitemap {
 	private $range = 2;
 
 	/**
+	 * Support post types.
+	 *
+	 * @var array
+	 */
+	private $post_types = [];
+
+	/**
 	 * Items to process in each DB cycle.
 	 *
 	 * @var int
@@ -41,7 +48,23 @@ class Sitemap {
 	 * Create a new empty sitemap.
 	 */
 	public function __construct() {
-		$this->range = date( 'Y-m-d H:i:s', strtotime( '-' . (int) $this->range . ' day' ) ); // phpcs:ignore
+		$this->range      = date( 'Y-m-d H:i:s', strtotime( '-' . (int) $this->range . ' day' ) ); // phpcs:ignore
+		$this->post_types = $this->supported_post_types();
+	}
+
+	/**
+	 * Retrieve supported post types.
+	 *
+	 * @return array
+	 */
+	public function supported_post_types(): array {
+		$post_types = get_post_types( [ 'public' => true ] );
+
+		if ( ! empty( $post_types['attachment'] ) ) {
+			unset( $post_types['attachment'] );
+		}
+
+		return apply_filters( 'tenup_google_news_sitemaps_post_types', $post_types );
 	}
 
 	/**
@@ -52,19 +75,7 @@ class Sitemap {
 	public function build() {
 		global $wpdb;
 
-		$args = [
-			'public' => true,
-		];
-
-		$post_types = get_post_types( $args );
-
-		if ( ! empty( $post_types['attachment'] ) ) {
-			unset( $post_types['attachment'] );
-		}
-
-		$post_types = apply_filters( 'tenup_google_news_sitemaps_post_types', $post_types );
-
-		foreach ( $post_types as $post_type ) {
+		foreach ( $this->post_types as $post_type ) {
 			$offset = 0;
 
 			while ( true ) {
@@ -119,6 +130,15 @@ class Sitemap {
 	 */
 	public function get_data(): array {
 		return $this->data;
+	}
+
+	/**
+	 * Get post types.
+	 *
+	 * @return array
+	 */
+	public function get_post_types(): array {
+		return $this->post_types;
 	}
 
 	/**

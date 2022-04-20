@@ -32,8 +32,8 @@ class Core {
 		add_filter( 'robots_txt', [ $this, 'add_sitemap_robots_txt' ] );
 
 		add_action( 'init', [ $this, 'create_rewrites' ] );
-		add_action( 'publish_post', [ $this, 'purge_sitemap_data' ] );
-		add_action( 'publish_post', [ $this, 'ping_google' ] );
+		add_action( 'publish_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
+		add_action( 'publish_post', [ $this, 'ping_google' ], 2000 );
 	}
 
 	/**
@@ -112,9 +112,25 @@ class Core {
 	/**
 	 * Purges sitemap data.
 	 *
+	 * @param int      $post_id     Post ID.
+	 * @param \WP_Post $post        Post object.
+	 * @param string   $old_status  Old post status
+	 *
 	 * @return boolean
 	 */
-	public function purge_sitemap_data(): bool {
+	public function purge_sitemap_data( int $post_id, \WP_Post $post, string $old_status ) {
+		$sitemap = new Sitemap();
+
+		// Don't purge cache for non-supported post types.
+		if ( ! in_array( $post->post_type, $sitemap->get_post_types(), true ) ) {
+			return false;
+		}
+
+		// This is an update, so we don't purge cache.
+		if ( 'publish' === $old_status && $old_status === $post->post_status ) {
+			return false;
+		}
+
 		return Utils::delete_cache();
 	}
 
