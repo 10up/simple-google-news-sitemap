@@ -1,0 +1,37 @@
+{
+  "name": "10up/google-news-sitemaps",
+  "authors": [
+    {
+      "name": "10up",
+      "email": "info@10up.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "10up/phpcs-composer": "dev-master",
+    "phpunit/phpunit": "^7",
+    "yoast/phpunit-polyfills": "^1.0",
+    "antecedent/patchwork": "^2.1",
+    "10up/wp_mock": "^0.4.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "TenupGoogleNewsSitemaps\\": "includes/classes/"
+    }
+  },
+  "scripts": {
+    "lint": "phpcs .",
+    "lint-fix": "phpcbf .",
+    "test": "phpunit",
+    "setup-local-tests": "bash bin/install-wp-tests.sh tgns_wp_test root password mysql latest true"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
