@@ -33,7 +33,9 @@ class Core {
 
 		add_action( 'init', [ $this, 'create_rewrites' ] );
 		add_action( 'publish_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
+		add_action( 'trash_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
 		add_action( 'publish_post', [ $this, 'ping_google' ], 2000 );
+		add_action( 'delete_post', [ $this, 'purge_sitemap_data_on_delete' ], 1000, 2 );
 	}
 
 	/**
@@ -110,7 +112,8 @@ class Core {
 	}
 
 	/**
-	 * Purges sitemap data.
+	 * Purges sitemap data on post publish (called upon post updates as well).
+	 * Also, this function is used when post is moved to trash.
 	 *
 	 * @param int      $post_id     Post ID.
 	 * @param \WP_Post $post        Post object.
@@ -118,7 +121,7 @@ class Core {
 	 *
 	 * @return boolean
 	 */
-	public function purge_sitemap_data( int $post_id, \WP_Post $post, string $old_status ) {
+	public function purge_sitemap_data( int $post_id, \WP_Post $post, string $old_status ): bool {
 		$sitemap = new Sitemap();
 
 		// Don't purge cache for non-supported post types.
@@ -126,8 +129,29 @@ class Core {
 			return false;
 		}
 
-		// This is an update, so we don't purge cache.
+		// Post date & range converted to timestamp.
+		$post_publish_date = strtotime( $post->post_date_gmt );
+		$range             = strtotime( $sitemap->get_range() );
+
+		/**
+		 * POST is moved to trash.
+		 * If the publish date falls within the range, we need to purge the cache.
+		 */
+		if ( 'trash' === $post->post_status && $post_publish_date > $range ) {
+			return Utils::delete_cache();
+		}
+
+		/**
+		 * POST is updated.
+		 * Case 1: where the publish date is modified and it falls within range from current time.
+		 * Case 2: where the publish date is modified and it falls outside range.
+		 */
 		if ( 'publish' === $old_status && $old_status === $post->post_status ) {
+			if ( $post_publish_date > $range || $post_publish_date < $range ) {
+				return Utils::delete_cache();
+			}
+
+			// For any other changes, we don't flush cache.
 			return false;
 		}
 
@@ -163,6 +187,31 @@ class Core {
 			return true;
 		}
 
+		return false;
+	}
+
+	/**
+	 * Purges sitemap data on post_delete.
+	 *
+	 * @param int      $post_id     Post ID.
+	 * @param \WP_Post $post        Post object.
+	 *
+	 * @return boolean
+	 */
+	public function purge_sitemap_data_on_delete( int $post_id, \WP_Post $post ): bool {
+		$sitemap = new Sitemap();
+
+		// Don't purge cache for non-supported post types.
+		if ( ! in_array( $post->post_type, $sitemap->get_post_types(), true ) ) {
+			return false;
+		}
+
+		// If the publish date is within range from current time, we need to flush the cache.
+		if ( strtotime( $post->post_date_gmt ) > strtotime( $sitemap->get_range() ) ) {
+			return Utils::delete_cache();
+		}
+
+		// For rest, we don't need to flush cache.
 		return false;
 	}
 
