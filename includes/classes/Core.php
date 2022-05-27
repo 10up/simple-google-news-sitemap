@@ -29,11 +29,12 @@ class Core {
 	 * @var array
 	 */
 	private $post_statuses = [
-		'publish',
 		'future',
+		'private',
 		'pending',
 		'draft',
 		'trash',
+		'auto-draft',
 	];
 
 	/**
@@ -47,11 +48,8 @@ class Core {
 		add_action( 'init', [ $this, 'create_rewrites' ] );
 
 		// Post status hooks.
-		add_action( 'publish_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
-		add_action( 'future_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
-		add_action( 'trash_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
-		add_action( 'pending_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
-		add_action( 'draft_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
+		add_action( 'publish_post', [ $this, 'purge_sitemap_data_on_publish' ], 1000, 3 );
+		add_action( 'transition_post_status', [ $this, 'purge_sitemap_data_on_status_change' ], 1000, 3 );
 
 		add_action( 'publish_post', [ $this, 'ping_google' ], 2000 );
 		add_action( 'delete_post', [ $this, 'purge_sitemap_data_on_delete' ], 1000, 2 );
@@ -131,15 +129,40 @@ class Core {
 	}
 
 	/**
-	 * Purges sitemap data when post is transitioned to a different status.
+	 * Purges sitemap data when the post is published.
 	 *
 	 * @param int      $post_id     Post ID.
 	 * @param \WP_Post $post        Post object.
-	 * @param string   $old_status  Old post status
+	 * @param string   $old_status  Old post status.
 	 *
 	 * @return boolean
 	 */
-	public function purge_sitemap_data( int $post_id, \WP_Post $post, string $old_status ): bool {
+	public function purge_sitemap_data_on_publish( int $post_id, \WP_Post $post, string $old_status ): bool {
+		$sitemap = new Sitemap();
+
+		// Don't purge cache for non-supported post types.
+		if ( ! in_array( $post->post_type, $sitemap->get_post_types(), true ) ) {
+			return false;
+		}
+
+		// Purge cache on updates.
+		if ( 'publish' === $old_status && $old_status === $post->post_status ) {
+			return Utils::delete_cache();
+		}
+
+		return false;
+	}
+
+	/**
+	 * Purges sitemap data when the post is published.
+	 *
+	 * @param string   $new_status  New post status.
+	 * @param string   $old_status  Old post status.
+	 * @param \WP_Post $post        Post object.
+	 *
+	 * @return boolean
+	 */
+	public function purge_sitemap_data_on_status_change( string $new_status, string $old_status, \WP_Post $post ): bool {
 		$sitemap = new Sitemap();
 
 		// Don't purge cache for non-supported post types.
@@ -152,21 +175,18 @@ class Core {
 		$range             = strtotime( $sitemap->get_range() );
 
 		/**
-		 * POST status is updated or changed to trash / future / pending / draft.
+		 * POST status is updated or changed to trash / future / pending / private / draft.
 		 * If the publish date falls within the range, we flush cache.
 		 */
 		if (
-			( 'publish' === $old_status && in_array( $post->post_status, $this->post_statuses, true ) )
-			|| ( in_array( $old_status, $this->post_statuses, true ) && 'publish' === $post->post_status )
+			'publish' === $old_status && in_array( $new_status, $this->post_statuses, true )
+			|| in_array( $old_status, $this->post_statuses, true ) && 'publish' === $new_status
 		) {
 			if ( $post_publish_date > $range ) {
 				return Utils::delete_cache();
 			}
 		}
 
-		/**
-		 * For everything else, do nothing.
-		 */
 		return false;
 	}
 
