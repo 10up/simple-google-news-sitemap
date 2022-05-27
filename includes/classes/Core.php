@@ -46,11 +46,8 @@ class Core {
 		add_filter( 'robots_txt', [ $this, 'add_sitemap_robots_txt' ] );
 
 		add_action( 'init', [ $this, 'create_rewrites' ] );
-
-		// Post status hooks.
-		add_action( 'publish_post', [ $this, 'purge_sitemap_data_on_publish' ], 1000, 3 );
+		add_action( 'publish_post', [ $this, 'purge_sitemap_data_on_update' ], 1000, 3 );
 		add_action( 'transition_post_status', [ $this, 'purge_sitemap_data_on_status_change' ], 1000, 3 );
-
 		add_action( 'publish_post', [ $this, 'ping_google' ], 2000 );
 		add_action( 'delete_post', [ $this, 'purge_sitemap_data_on_delete' ], 1000, 2 );
 	}
@@ -129,7 +126,7 @@ class Core {
 	}
 
 	/**
-	 * Purges sitemap data when the post is published.
+	 * Purges sitemap data when the post is updated.
 	 *
 	 * @param int      $post_id     Post ID.
 	 * @param \WP_Post $post        Post object.
@@ -137,7 +134,7 @@ class Core {
 	 *
 	 * @return boolean
 	 */
-	public function purge_sitemap_data_on_publish( int $post_id, \WP_Post $post, string $old_status ): bool {
+	public function purge_sitemap_data_on_update( int $post_id, \WP_Post $post, string $old_status ): bool {
 		$sitemap = new Sitemap();
 
 		// Don't purge cache for non-supported post types.
