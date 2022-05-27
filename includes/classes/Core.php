@@ -137,8 +137,13 @@ class Core {
 		 * POST is moved to trash.
 		 * If the publish date falls within the range, we need to purge the cache.
 		 */
-		if ( 'trash' === $post->post_status && $post_publish_date > $range ) {
-			return Utils::delete_cache();
+		if ( 'trash' === $post->post_status ) {
+			if ( $post_publish_date > $range ) {
+				return Utils::delete_cache();
+			}
+
+			// Return early so that we don't flush cache on every trashed post.
+			return false;
 		}
 
 		/**
