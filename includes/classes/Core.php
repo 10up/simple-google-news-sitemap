@@ -24,6 +24,19 @@ class Core {
 	private $sitemap_slug = 'news-sitemap';
 
 	/**
+	 * Post statuses.
+	 *
+	 * @var array
+	 */
+	private $post_statuses = [
+		'publish',
+		'future',
+		'pending',
+		'draft',
+		'trash',
+	];
+
+	/**
 	 * Setup hooks.
 	 */
 	public function __construct() {
@@ -32,8 +45,14 @@ class Core {
 		add_filter( 'robots_txt', [ $this, 'add_sitemap_robots_txt' ] );
 
 		add_action( 'init', [ $this, 'create_rewrites' ] );
+
+		// Post status hooks.
 		add_action( 'publish_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
+		add_action( 'future_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
 		add_action( 'trash_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
+		add_action( 'pending_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
+		add_action( 'draft_post', [ $this, 'purge_sitemap_data' ], 1000, 3 );
+
 		add_action( 'publish_post', [ $this, 'ping_google' ], 2000 );
 		add_action( 'delete_post', [ $this, 'purge_sitemap_data_on_delete' ], 1000, 2 );
 	}
@@ -112,8 +131,7 @@ class Core {
 	}
 
 	/**
-	 * Purges sitemap data on post publish (called upon post updates as well).
-	 * Also, this function is used when post is moved to trash.
+	 * Purges sitemap data when post is transitioned to a different status.
 	 *
 	 * @param int      $post_id     Post ID.
 	 * @param \WP_Post $post        Post object.
@@ -134,33 +152,22 @@ class Core {
 		$range             = strtotime( $sitemap->get_range() );
 
 		/**
-		 * POST is moved to trash.
-		 * If the publish date falls within the range, we need to purge the cache.
+		 * POST status is updated or changed to trash / future / pending / draft.
+		 * If the publish date falls within the range, we flush cache.
 		 */
-		if ( 'trash' === $post->post_status ) {
+		if (
+			( 'publish' === $old_status && in_array( $post->post_status, $this->post_statuses, true ) )
+			|| ( in_array( $old_status, $this->post_statuses, true ) && 'publish' === $post->post_status )
+		) {
 			if ( $post_publish_date > $range ) {
 				return Utils::delete_cache();
 			}
-
-			// Return early so that we don't flush cache on every trashed post.
-			return false;
 		}
 
 		/**
-		 * POST is updated.
-		 * Case 1: where the publish date is modified and it falls within range from current time.
-		 * Case 2: where the publish date is modified and it falls outside range.
+		 * For everything else, do nothing.
 		 */
-		if ( 'publish' === $old_status && $old_status === $post->post_status ) {
-			if ( $post_publish_date > $range || $post_publish_date < $range ) {
-				return Utils::delete_cache();
-			}
-
-			// For any other changes, we don't flush cache.
-			return false;
-		}
-
-		return Utils::delete_cache();
+		return false;
 	}
 
 	/**
@@ -198,6 +205,9 @@ class Core {
 	/**
 	 * Purges sitemap data on post_delete.
 	 *
+	 * This one is for the cases when the post is deleted directly via CLI and does
+	 * not go to trash.
+	 *
 	 * @param int      $post_id     Post ID.
 	 * @param \WP_Post $post        Post object.
 	 *
@@ -211,12 +221,16 @@ class Core {
 			return false;
 		}
 
-		// If the publish date is within range from current time, we need to flush the cache.
-		if ( strtotime( $post->post_date_gmt ) > strtotime( $sitemap->get_range() ) ) {
+		// Post date & range converted to timestamp.
+		$post_publish_date = strtotime( $post->post_date_gmt );
+		$range             = strtotime( $sitemap->get_range() );
+
+		// If the publish date is within range from current time, we purge the cache.
+		if ( $post_publish_date > $range ) {
 			return Utils::delete_cache();
 		}
 
-		// For rest, we don't need to flush cache.
+		// For rest, we do nothing.
 		return false;
 	}
 
