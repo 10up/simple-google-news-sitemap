@@ -8,7 +8,7 @@
 namespace TenupGoogleNewsSitemaps;
 
 use TenupGoogleNewsSitemaps\Sitemap;
-use WP_UnitTestCase, WP_Mock, Mockery;
+use WP_UnitTestCase;
 
 /**
  * Sitemap test class
@@ -21,17 +21,6 @@ class TestSitemap extends WP_UnitTestCase {
 		$wp_rewrite->set_permalink_structure( '/%postname%/' );
 		update_option( "rewrite_rules", true );
 		$wp_rewrite->flush_rules( true );
-
-		WP_Mock::setUp();
-	}
-
-	public function tearDown() {
-		$this->addToAssertionCount(
-			Mockery::getContainer()->mockery_getExpectationCount()
-		);
-
-		WP_Mock::tearDown();
-		Mockery::close();
 	}
 
 	/**

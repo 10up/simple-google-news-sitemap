@@ -41,7 +41,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 					<news:language><?php echo esc_html( $language ); ?></news:language>
 				</news:publication>
 
-				<news:publication_date><?php echo esc_html( date( 'Y-m-d', $link['modified'] ) ); // phpcs:ignore ?></news:publication_date>
+				<news:publication_date><?php echo esc_html( date( 'Y-m-d H:i:s', $link['modified'] ) ); // phpcs:ignore ?></news:publication_date>
 				<news:title><?php echo esc_html( $link['title'] ); ?></news:title>
 			</news:news>
 		</url>
