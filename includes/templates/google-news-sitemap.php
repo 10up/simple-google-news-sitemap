@@ -42,7 +42,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 				</news:publication>
 
 				<news:publication_date><?php echo esc_html( date( DATE_W3C, $link['modified'] ) ); // phpcs:ignore ?></news:publication_date>
-				<news:title><?php echo esc_html( $link['title'] ); ?></news:title>
+				<news:title><?php echo esc_html( trim( $link['title'], '&nbsp;' ) ); ?></news:title>
 			</news:news>
 		</url>
 		<?php
