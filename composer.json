@@ -1,5 +1,5 @@
 {
-  "name": "10up/google-news-sitemaps",
+  "name": "10up/google-news-sitemap",
   "authors": [
     {
       "name": "10up",
@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "TenupGoogleNewsSitemaps\\": "includes/classes/"
+      "SimpleGoogleNewsSitemap\\": "includes/classes/"
     }
   },
   "scripts": {

@@ -2,10 +2,10 @@
 /**
  * Sitemap class
  *
- * @package 10up-google-news-sitemaps
+ * @package simple-google-news-sitemap
  */
 
-namespace TenupGoogleNewsSitemaps;
+namespace SimpleGoogleNewsSitemap;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -64,7 +64,7 @@ class Sitemap {
 			unset( $post_types['attachment'] );
 		}
 
-		return apply_filters( 'tenup_google_news_sitemaps_post_types', $post_types );
+		return apply_filters( 'simple_google_news_sitemap_post_types', $post_types );
 	}
 
 	/**
@@ -97,7 +97,7 @@ class Sitemap {
 						'modified' => strtotime( $result['post_date_gmt'] ),
 					];
 
-					$item = apply_filters( 'tenup_google_news_sitemaps_post', $item, $post_type );
+					$item = apply_filters( 'simple_google_news_sitemap_post', $item, $post_type );
 
 					if ( ! empty( $item ) && ! empty( $item['url'] ) ) {
 						$this->data[] = $item;

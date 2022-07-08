@@ -2,12 +2,12 @@
 /**
  * Google News Sitemap testing
  *
- * @package 10up-google-news-sitemaps
+ * @package simple-google-news-sitemap
  */
 
-namespace TenupGoogleNewsSitemaps;
+namespace SimpleGoogleNewsSitemap;
 
-use TenupGoogleNewsSitemaps\Core;
+use SimpleGoogleNewsSitemap\Core;
 use WP_UnitTestCase, WP_Mock, Mockery;
 
 /**
@@ -114,7 +114,7 @@ class TestCore extends WP_UnitTestCase {
 	public function testPingGoogleNotEnabled() {
 		$core = new Core();
 
-		add_filter( 'tenup_google_news_sitemaps_ping', '__return_false' );
+		add_filter( 'simple_google_news_sitemap_ping', '__return_false' );
 
 		$this->assertFalse( $core->ping_google() );
 	}
@@ -126,7 +126,7 @@ class TestCore extends WP_UnitTestCase {
 	public function testPingGooglePrivateBlog() {
 		$core = new Core();
 
-		add_filter( 'tenup_google_news_sitemaps_ping', '__return_true' );
+		add_filter( 'simple_google_news_sitemap_ping', '__return_true' );
 
 		\WP_Mock::userFunction(
 			'get_option',

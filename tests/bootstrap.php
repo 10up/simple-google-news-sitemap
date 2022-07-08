@@ -1,11 +1,11 @@
 <?php
 /**
- * 10up Google News Sitemaps test bootstrap
+ * Simple Google News Sitemap test bootstrap
  *
- * @package 10up-google-news-sitemaps
+ * @package simple-google-news-sitemap
  */
 
-namespace TenupGoogleNewsSitemaps;
+namespace SimpleGoogleNewsSitemap;
 
 set_time_limit( 0 );
 
@@ -24,7 +24,7 @@ $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 function load_plugin() {
 	global $wp_version;
 
-	require_once __DIR__ . '/../10up-google-news-sitemaps.php';
+	require_once __DIR__ . '/../simple-google-news-sitemap.php';
 
 	add_action( 'init', __NAMESPACE__ . '\register_post_types' );
 

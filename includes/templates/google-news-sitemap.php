@@ -2,13 +2,13 @@
 /**
  * Sitemap template
  *
- * @package  10up-google-news-sitemaps
+ * @package  simple-google-news-sitemap
  */
 
-use TenupGoogleNewsSitemaps\Utils;
+use SimpleGoogleNewsSitemap\Utils;
 
 $links = Utils::get_cache();
-$links = apply_filters( 'tenup_google_news_sitemaps_data', $links );
+$links = apply_filters( 'simple_google_news_sitemap_data', $links );
 
 // Used for publication name and language.
 $publication = get_bloginfo( 'name' );
@@ -26,7 +26,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 	<?php
 	// Hook for adding data at the start of sitemap.
-	do_action( 'tenup_google_news_sitemaps_start' );
+	do_action( 'simple_google_news_sitemap_start' );
 
 	foreach ( $links as $link ) :
 		if ( empty( $link['url'] ) ) {
@@ -50,6 +50,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 	endforeach;
 
 	// Hook for adding data at the end of sitemap.
-	do_action( 'tenup_google_news_sitemaps_end' );
+	do_action( 'simple_google_news_sitemap_end' );
 	?>
 </urlset>
