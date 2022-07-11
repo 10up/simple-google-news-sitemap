@@ -168,7 +168,7 @@ class Core {
 		}
 
 		// Post date & range converted to timestamp.
-		$post_publish_date = strtotime( $post->post_date_gmt );
+		$post_publish_date = strtotime( $post->post_date );
 		$range             = strtotime( $sitemap->get_range() );
 
 		/**
@@ -239,7 +239,7 @@ class Core {
 		}
 
 		// Post date & range converted to timestamp.
-		$post_publish_date = strtotime( $post->post_date_gmt );
+		$post_publish_date = strtotime( $post->post_date );
 		$range             = strtotime( $sitemap->get_range() );
 
 		// If the publish date is within range from current time, we purge the cache.

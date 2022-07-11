@@ -80,7 +80,7 @@ class Sitemap {
 
 			while ( true ) {
 				// phpcs:disable
-				$results = $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_title, post_date_gmt FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = '%s' AND post_date_gmt >= '%s' ORDER BY post_date_gmt DESC LIMIT %d, %d", $post_type, $this->range, (int) $offset, (int) $this->process_page_size ), ARRAY_A );
+				$results = $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_title, post_date FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = '%s' AND post_date >= '%s' ORDER BY post_date DESC LIMIT %d, %d", $post_type, $this->range, (int) $offset, (int) $this->process_page_size ), ARRAY_A );
 				// phpcs:enable
 
 				if ( empty( $results ) ) {
@@ -94,7 +94,7 @@ class Sitemap {
 						'ID'       => (int) $result['ID'],
 						'url'      => $permalink,
 						'title'    => $result['post_title'],
-						'modified' => strtotime( $result['post_date_gmt'] ),
+						'modified' => strtotime( $result['post_date'] ),
 					];
 
 					$item = apply_filters( 'simple_google_news_sitemap_post', $item, $post_type );
