@@ -2,10 +2,10 @@
 /**
  * Core plugin functionality
  *
- * @package 10up-google-news-sitemaps
+ * @package simple-google-news-sitemap
  */
 
-namespace TenupGoogleNewsSitemaps;
+namespace SimpleGoogleNewsSitemap;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -120,7 +120,7 @@ class Core {
 	 */
 	public function add_sitemap_robots_txt( string $output ): string {
 		$url     = site_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
-		$output .= "\n" . esc_html__( 'News Sitemap', 'tenup-google-news-sitemaps' ) . ": {$url}\n";
+		$output .= "\n" . esc_html__( 'News Sitemap', 'simple-google-news-sitemap' ) . ": {$url}\n";
 
 		return $output;
 	}
@@ -193,7 +193,7 @@ class Core {
 	 * @return boolean
 	 */
 	public function ping_google(): bool {
-		if ( false === apply_filters( 'tenup_google_news_sitemaps_ping', true ) ) {
+		if ( false === apply_filters( 'simple_google_news_sitemap_ping', true ) ) {
 			return false;
 		}
 

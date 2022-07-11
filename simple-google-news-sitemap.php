@@ -1,19 +1,19 @@
 <?php
 /**
- * Plugin Name: 10up Google News Sitemaps
+ * Plugin Name: Simple Google News Sitemap
  * Plugin URI:  https://10up.com
  * Description: Google News sitemap plugin
  * Version:     1.0
  * Author:      10up
  * Author URI:  https://10up.com
  * License:     GPLv2+
- * Text Domain: tenup-google-news-sitemaps
- * Update URI:  https://github.com/10up/google-news-sitemaps
+ * Text Domain: simple-google-news-sitemap
+ * Update URI:  https://github.com/10up/simple-google-news-sitemap
  *
- * @package 10up-google-news-sitemaps
+ * @package simple-google-news-sitemap
  */
 
-namespace TenupGoogleNewsSitemaps;
+namespace SimpleGoogleNewsSitemap;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Cannot access page directly' );
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 spl_autoload_register(
 	function( $class ) {
 		// Project-specific namespace prefix.
-		$prefix = 'TenupGoogleNewsSitemaps\\';
+		$prefix = 'SimpleGoogleNewsSitemap\\';
 		// Base directory for the namespace prefix.
 		$base_dir = __DIR__ . '/includes/classes/';
 		// Does the class use the namespace prefix?

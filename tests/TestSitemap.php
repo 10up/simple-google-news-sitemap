@@ -2,12 +2,12 @@
 /**
  * Google News Sitemap testing
  *
- * @package 10up-google-news-sitemaps
+ * @package simple-google-news-sitemap
  */
 
-namespace TenupGoogleNewsSitemaps;
+namespace SimpleGoogleNewsSitemap;
 
-use TenupGoogleNewsSitemaps\Sitemap;
+use SimpleGoogleNewsSitemap\Sitemap;
 use WP_UnitTestCase;
 
 /**

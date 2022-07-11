@@ -1,6 +1,6 @@
-# 10up Google News Sitemaps
+# Simple Google News Sitemap
 
-> This is a simple Google News sitemap plugin. Sitemaps are generated on the fly for articles that were published in the last two days. Output is saved in cache or as a transient for fast reading/displaying on the front end.
+> This is a simple Google News sitemap plugin. Sitemap is generated on the fly for articles that were published in the last two days. Output is saved in cache or as a transient for fast reading/displaying on the front end.
 
 ## Usage
 
@@ -10,21 +10,21 @@
 
 ### Important Points
 
-- By default, the plugin supports all post types (inc. custom ones). To filter out supported post types, the `tenup_google_news_sitemaps_post_types` hook can be used. The example is shown down below.
+- By default, the plugin supports all post types (inc. custom ones). To filter out supported post types, the `simple_google_news_sitemap_post_types` hook can be used. The example is shown down below.
 
 - Cached sitemap data is set to expire after 2 days. Also, the data gets purged whenever a new post is published so that it can be included in the sitemap instantly.
 
 - No sitemap file is stored on disk. Data is served either from the cache or from the DB if caching is not enabled.
 
-- The plugin also pings the Google service whenever a new post is published. This behaviour can be toggled using the `tenup_google_news_sitemaps_ping` filter hook.
+- The plugin also pings the Google service whenever a new post is published. This behaviour can be toggled using the `simple_google_news_sitemap_ping` filter hook.
 
-- Utilise the `tenup_google_news_sitemaps_start` and `tenup_google_news_sitemaps_end` hooks to add data to the beginning and end of the sitemap, respectively.
+- Utilise the `simple_google_news_sitemap_start` and `simple_google_news_sitemap_end` hooks to add data to the beginning and end of the sitemap, respectively.
 
 #### Hook Usage
 
 Example (for filtering supported post types):
 ```
-add_filter( 'tenup_google_news_sitemaps_post_types', 'filter_post_types' );
+add_filter( 'simple_google_news_sitemap_post_types', 'filter_post_types' );
 
 function filter_post_types( array $post_types ) {
     // Return the filtered post types
@@ -45,8 +45,8 @@ If using Windows, it is recommended to use WSL2 as mentioned here - https://gith
 Initialise a `wp-local-docker` instance and inside the `wp-content/plugins` folder, run the following steps:
 
 ```
-$  git clone git@gitlab.10up.com:10up-internal/10up-google-news-sitemaps.git
-$  cd 10up-google-news-sitemaps
+$  git clone git@gitlab.10up.com:10up-internal/simple-google-news-sitemap.git
+$  cd simple-google-news-sitemap
 $  composer install
 ```
 
@@ -58,7 +58,7 @@ All commands listed below should be run from the root of the plugin folder in yo
 
 ```
 $  10updocker shell
-$  cd wp-content/plugins/10up-google-news-sitemaps
+$  cd wp-content/plugins/simple-google-news-sitemap
 $  composer setup-local-tests
 ```
 

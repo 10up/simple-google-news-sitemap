@@ -2,10 +2,10 @@
 /**
  * Utility functions
  *
- * @package 10up-google-news-sitemaps
+ * @package simple-google-news-sitemap
  */
 
-namespace TenupGoogleNewsSitemaps;
+namespace SimpleGoogleNewsSitemap;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,14 +21,14 @@ class Utils {
 	 *
 	 * @var string
 	 */
-	private static $cache_key = 'tenup_google_news_sitemaps_data';
+	private static $cache_key = 'simple_google_news_sitemap_data';
 
 	/**
 	 * Cache group
 	 *
 	 * @var string
 	 */
-	private static $cache_group = 'tenup_google_news_sitemaps';
+	private static $cache_group = 'simple_google_news_sitemap';
 
 	/**
 	 * Cache expiry (number of days)
