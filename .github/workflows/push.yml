@@ -1,0 +1,21 @@
+on: push
+name: PR Workflow
+
+jobs:
+  checks:
+    name: Plugin Checks
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Install Dependencies
+      run: composer install
+
+    - name: Run Linter
+      run: composer lint
+
+    - name: Setup Tests
+      run: composer setup-local-tests
+
+    - name: Unit Tests
+      run: composer test
