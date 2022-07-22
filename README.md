@@ -20,6 +20,8 @@
 
 - Utilise the `simple_google_news_sitemap_start` and `simple_google_news_sitemap_end` hooks to add data to the beginning and end of the sitemap, respectively.
 
+- Once the sitemap is generated, add it to the Google Search Console.
+
 #### Hook Usage
 
 Example (for filtering supported post types):
@@ -32,6 +34,10 @@ function filter_post_types( array $post_types ) {
 }
 
 ```
+
+#### Troubleshooting
+
+If `<YOUR_BLOG_URL>/news-sitemap.xml` results into 404, try saving permalinks and check the sitemap again.
 
 ## Local Setup
 
