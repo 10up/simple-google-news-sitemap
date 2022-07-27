@@ -14,6 +14,9 @@ jobs:
     - name: Run Linter
       run: composer lint
 
+    - name: Start MySQL
+      run: sudo systemctl start mysql.service
+
     - name: Setup Tests
       run: composer setup-local-tests
 
