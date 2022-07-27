@@ -143,7 +143,7 @@ install_db() {
 	fi
 
 	if [ ${CREATE_DB_IF_EXISTS} = "true" ]; then
-		echo "Database already exists."
+		mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA || echo "Database already exists."
 	else
 		mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
 	fi
