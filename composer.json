@@ -13,7 +13,7 @@
   "prefer-stable": true,
   "require-dev": {
     "10up/phpcs-composer": "dev-master",
-    "phpunit/phpunit": "^7",
+    "phpunit/phpunit": "^8.5",
     "yoast/phpunit-polyfills": "^1.0",
     "antecedent/patchwork": "^2.1",
     "10up/wp_mock": "^0.4.2"
