@@ -15,7 +15,7 @@ use WP_UnitTestCase;
  */
 class TestSitemap extends WP_UnitTestCase {
 
-	public function setUp() {
+	public function setUp(): void {
 		global $wp_rewrite;
 
 		$wp_rewrite->set_permalink_structure( '/%postname%/' );
@@ -26,7 +26,7 @@ class TestSitemap extends WP_UnitTestCase {
 	/**
 	 * Test building sitemap.
 	 */
-	public function testBuild() {
+	public function testBuild(): void {
 		$args = array(
 			'post_status' => 'publish',
 			'post_type'   => 'post',
