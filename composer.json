@@ -27,7 +27,7 @@
     "lint": "phpcs .",
     "lint-fix": "phpcbf .",
     "test": "phpunit",
-    "setup-local-tests": "bash bin/install-wp-tests.sh tgns_wp_test root password mysql latest true"
+    "setup-local-tests": "bash bin/install-wp-tests.sh tgns_wp_test root root mysql latest true"
   },
   "config": {
     "allow-plugins": {
