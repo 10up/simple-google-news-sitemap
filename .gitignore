@@ -1,2 +1,8 @@
+# MacOS attributes file
 .DS_Store
-vendor
+
+# Composer packages
+/vendor/
+
+# Cache files
+*.cache

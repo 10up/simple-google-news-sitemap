@@ -18,7 +18,7 @@ jobs:
       run: sudo systemctl start mysql.service
 
     - name: Setup Tests
-      run: composer setup-local-tests
+      run: composer setup-tests:ci
 
     - name: Unit Tests
       run: composer test
