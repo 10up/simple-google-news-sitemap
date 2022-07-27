@@ -65,7 +65,7 @@ All commands listed below should be run from the root of the plugin folder in yo
 ```
 $  10updocker shell
 $  cd wp-content/plugins/simple-google-news-sitemap
-$  composer setup-local-tests
+$  composer setup-tests:local
 ```
 
 Once the above steps are completed, run `composer test` for running the unit tests.
