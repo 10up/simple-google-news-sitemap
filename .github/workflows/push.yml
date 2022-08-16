@@ -1,5 +1,12 @@
-on: push
-name: PR Workflow
+name: Linting and Tests
+
+on:
+  push:
+    - develop
+    - trunk
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   checks:
