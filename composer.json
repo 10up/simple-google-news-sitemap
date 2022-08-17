@@ -1,9 +1,14 @@
 {
-  "name": "10up/google-news-sitemap",
+  "name": "10up/simple-google-news-sitemap",
+  "description": "A simple Google News sitemap is generated on-the-fly for articles that were published in the last two days. Output is saved in cache or as a transient for fast reading and displaying on the front end.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "10up",
-      "email": "info@10up.com"
+      "email": "opensource@10up.com",
+	  "homepage": "https://10up.com",
+	  "role": "Developer"
     }
   ],
   "require": {

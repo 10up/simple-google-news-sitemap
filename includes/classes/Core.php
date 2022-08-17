@@ -80,6 +80,18 @@ class Core {
 	}
 
 	/**
+	 * Remove rewrite rules/tags
+	 *
+	 * @return void
+	 */
+	public function remove_rewrites() {
+		remove_rewrite_tag( '%' . $this->sitemap_slug . '%', 'true' );
+
+		global $wp_rewrite;
+		unset( $wp_rewrite->extra_rules_top[ sprintf( '^%s.xml$', $this->sitemap_slug ) ] );
+	}
+
+	/**
 	 * Disable Main Query when rendering sitemaps.
 	 *
 	 * @param array|null $posts array of post data or null.
