@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name
+ * Simple Google News Sitemap
  * 
  * @package           simple-google-news-sitemap
  * @author            10up
