@@ -57,7 +57,7 @@ register_activation_hook(
 	__FILE__,
 	function() use ( $plugin_core ) {
 		$plugin_core->create_rewrites();
-		flush_rewrite_rules( false  );
+		flush_rewrite_rules( false );
 	}
 );
 
@@ -65,6 +65,6 @@ register_deactivation_hook(
 	__FILE__,
 	function() use ( $plugin_core ) {
 		$plugin_core->remove_rewrites();
-		flush_rewrite_rules( false  );
+		flush_rewrite_rules( false );
 	}
 );
