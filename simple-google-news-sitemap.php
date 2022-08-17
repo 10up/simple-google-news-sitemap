@@ -1,16 +1,25 @@
 <?php
 /**
- * Plugin Name: Simple Google News Sitemap
- * Plugin URI:  https://10up.com
- * Description: Google News sitemap plugin
- * Version:     1.0
- * Author:      10up
- * Author URI:  https://10up.com
- * License:     GPLv2+
- * Text Domain: simple-google-news-sitemap
- * Update URI:  https://github.com/10up/simple-google-news-sitemap
+ * Simple Google News Sitemap
+ * 
+ * @package           simple-google-news-sitemap
+ * @author            10up
+ * @license           GPL-2.0-or-later
+ * 
+ * @wordpress-plugin
+ * Plugin Name:       Simple Google News Sitemap
+ * Plugin URI:        https://github.com/10up/simple-google-news-sitemap
+ * Description:       A simple Google News sitemap is generated on-the-fly for articles that were published in the last two days.
+ * Version:           1.0.0
+ * Requires at least: 5.7
+ * Requires PHP:      7.4
+ * Author:            10up
+ * Author URI:        https://10up.com
+ * Text Domain:       simple-google-news-sitemap
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI:        https://github.com/10up/simple-google-news-sitemap
  *
- * @package simple-google-news-sitemap
  */
 
 namespace SimpleGoogleNewsSitemap;
