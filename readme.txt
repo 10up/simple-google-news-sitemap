@@ -92,7 +92,7 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/10up/simple-google-news-site
 
 == Changelog ==
 
-= 1.0.0 - TBD =
+= 1.0.0 - 2022-08-17 =
 * **Added:** Initial plugin release 🎉
 * **Added:** Sitemap is generated on-the-fly.
 * **Added:** Output is saved in an option for fast reading and displaying on the front end.

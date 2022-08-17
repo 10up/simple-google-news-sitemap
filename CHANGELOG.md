@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ## [Unreleased] - TBD
 
-## [1.0.0] - TBD
+## [1.0.0] - 2022-08-17
 ### Added
 - Initial plugin release 🎉
 - Sitemap is generated on-the-fly.
