@@ -48,21 +48,23 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 // Initialise plugin core.
-new Core();
+$plugin_core = new Core();
 
 /**
  * Flush rewrites on activation and deactivation.
  */
 register_activation_hook(
 	__FILE__,
-	function() {
-		flush_rewrite_rules();
+	function() use ( $plugin_core ) {
+		$plugin_core->create_rewrites();
+		flush_rewrite_rules( false  );
 	}
 );
 
 register_deactivation_hook(
 	__FILE__,
-	function() {
-		flush_rewrite_rules();
+	function() use ( $plugin_core ) {
+		$plugin_core->remove_rewrites();
+		flush_rewrite_rules( false  );
 	}
 );
