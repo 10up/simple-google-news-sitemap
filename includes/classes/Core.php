@@ -132,7 +132,7 @@ class Core {
 	 */
 	public function add_sitemap_robots_txt( string $output ): string {
 		$url     = site_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
-		$output .= "\n" . esc_html__( 'News Sitemap', 'simple-google-news-sitemap' ) . ": {$url}\n";
+		$output .= "\n" . esc_html__( 'Sitemap', 'simple-google-news-sitemap' ) . ": {$url}\n";
 
 		return $output;
 	}
