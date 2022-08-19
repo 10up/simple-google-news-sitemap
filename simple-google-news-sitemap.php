@@ -1,11 +1,11 @@
 <?php
 /**
  * Simple Google News Sitemap
- * 
+ *
  * @package           simple-google-news-sitemap
  * @author            10up
  * @license           GPL-2.0-or-later
- * 
+ *
  * @wordpress-plugin
  * Plugin Name:       Simple Google News Sitemap
  * Plugin URI:        https://github.com/10up/simple-google-news-sitemap
@@ -19,7 +19,6 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Update URI:        https://github.com/10up/simple-google-news-sitemap
- *
  */
 
 namespace SimpleGoogleNewsSitemap;
