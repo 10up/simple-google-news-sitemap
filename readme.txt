@@ -3,7 +3,7 @@ Contributors:      10up,
 Tags:              sitemap, Google News
 Requires at least: 5.7
 Tested up to:      6.0
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 Requires PHP:      7.4
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -91,6 +91,9 @@ Once the above steps are completed, run `composer test` for running the unit tes
 Please read [CODE_OF_CONDUCT.md](https://github.com/10up/simple-google-news-sitemap/blob/develop/CODE_OF_CONDUCT.md) for details on our code of conduct, [CONTRIBUTING.md](https://github.com/10up/simple-google-news-sitemap/blob/develop/CONTRIBUTING.md) for details on the process for submitting pull requests to us, and [CREDITS.md](https://github.com/10up/simple-google-news-sitemap/blob/develop/CREDITS.md) for a list of maintainers, contributors, and libraries used in this repository.
 
 == Changelog ==
+
+= 1.0.1 - 2022-08-19 =
+* **Fixed:** News sitemap entry in robots.txt file (props [@Ritesh-patel](https://github.com/Ritesh-patel) via [#9](https://github.com/10up/simple-google-news-sitemap/pull/9)).
 
 = 1.0.0 - 2022-08-17 =
 * **Added:** Initial plugin release 🎉
