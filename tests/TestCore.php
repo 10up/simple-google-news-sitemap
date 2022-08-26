@@ -104,7 +104,7 @@ class TestCore extends WP_UnitTestCase {
 		$core = new Core();
 		$url = site_url( '/news-sitemap.xml' );
 
-		$this->assertEquals( "\nNews Sitemap: {$url}\n", $core->add_sitemap_robots_txt( '' ) );
+		$this->assertEquals( "\nSitemap: {$url}\n", $core->add_sitemap_robots_txt( '' ) );
 	}
 
 	/**
