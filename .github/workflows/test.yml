@@ -42,7 +42,7 @@ jobs:
           composer-${{ env.COMPOSER_VERSION }}-
 
     - name: Set PHP version
-      uses: shivammathur/setup-php@2
+      uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php }}
         coverage: none
