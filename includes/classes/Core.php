@@ -24,20 +24,6 @@ class Core {
 	private $sitemap_slug = 'news-sitemap';
 
 	/**
-	 * Post statuses.
-	 *
-	 * @var array
-	 */
-	private $post_statuses = [
-		'future',
-		'private',
-		'pending',
-		'draft',
-		'trash',
-		'auto-draft',
-	];
-
-	/**
 	 * Setup hooks.
 	 */
 	public function init() {
@@ -183,13 +169,32 @@ class Core {
 		$post_publish_date = strtotime( $post->post_date );
 		$range             = strtotime( $sitemap->get_range() );
 
+		// Post statuses we clear the cache on.
+		$post_statuses = [
+			'future',
+			'private',
+			'pending',
+			'draft',
+			'trash',
+			'auto-draft',
+		];
+
+		/**
+		 * Filter the post statuses we look for to determine if cache needs cleared.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $post_statuses Post statuses we clear cache on.
+		 */
+		$post_statuses = apply_filters( 'simple_google_news_sitemap_post_statuses_to_clear', $post_statuses );
+
 		/**
 		 * POST status is updated or changed to trash / future / pending / private / draft.
 		 * If the publish date falls within the range, we flush cache.
 		 */
 		if (
-			'publish' === $old_status && in_array( $new_status, $this->post_statuses, true )
-			|| in_array( $old_status, $this->post_statuses, true ) && 'publish' === $new_status
+			'publish' === $old_status && in_array( $new_status, $post_statuses, true )
+			|| in_array( $old_status, $post_statuses, true ) && 'publish' === $new_status
 		) {
 			if ( $post_publish_date > $range ) {
 				return CacheUtils::delete_cache();
