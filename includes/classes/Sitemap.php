@@ -134,7 +134,7 @@ class Sitemap {
 		}
 
 		// Add sitemap data to cache (if available) or wp_options.
-		Utils::set_cache( $this->data );
+		CacheUtils::set_cache( $this->data );
 	}
 
 	/**

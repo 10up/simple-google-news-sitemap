@@ -5,9 +5,9 @@
  * @package  simple-google-news-sitemap
  */
 
-use SimpleGoogleNewsSitemap\Utils;
+use SimpleGoogleNewsSitemap\CacheUtils;
 
-$links = Utils::get_cache();
+$links = CacheUtils::get_cache();
 
 /**
  * Filter all items that will be output in the sitemap.

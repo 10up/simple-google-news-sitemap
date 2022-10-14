@@ -1,6 +1,6 @@
 <?php
 /**
- * Utility functions
+ * Cache utility functions
  *
  * @package simple-google-news-sitemap
  */
@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Utility functions.
+ * Cache utility functions.
  */
-class Utils {
+class CacheUtils {
 
 	/**
 	 * Cache key for sitemap data.

@@ -156,7 +156,7 @@ class Core {
 
 		// Purge cache on updates.
 		if ( 'publish' === $old_status && $old_status === $post->post_status ) {
-			return Utils::delete_cache();
+			return CacheUtils::delete_cache();
 		}
 
 		return false;
@@ -192,7 +192,7 @@ class Core {
 			|| in_array( $old_status, $this->post_statuses, true ) && 'publish' === $new_status
 		) {
 			if ( $post_publish_date > $range ) {
-				return Utils::delete_cache();
+				return CacheUtils::delete_cache();
 			}
 		}
 
@@ -263,7 +263,7 @@ class Core {
 
 		// If the publish date is within range from current time, we purge the cache.
 		if ( $post_publish_date > $range ) {
-			return Utils::delete_cache();
+			return CacheUtils::delete_cache();
 		}
 
 		// For rest, we do nothing.
