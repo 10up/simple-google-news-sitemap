@@ -205,6 +205,13 @@ class Core {
 	 * @return boolean
 	 */
 	public function ping_google(): bool {
+		/**
+		 * Decide whether to ping Google when the sitemap changes.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param boolean $should_ping Should we ping Google? Default true.
+		 */
 		if ( false === apply_filters( 'simple_google_news_sitemap_ping', true ) ) {
 			return false;
 		}
