@@ -40,7 +40,7 @@ class Core {
 	/**
 	 * Setup hooks.
 	 */
-	public function __construct() {
+	public function init() {
 		add_filter( 'template_include', [ $this, 'load_sitemap_template' ] );
 		add_filter( 'posts_pre_query', [ $this, 'disable_main_query_for_sitemap_xml' ], 10, 2 );
 		add_filter( 'robots_txt', [ $this, 'add_sitemap_robots_txt' ] );
