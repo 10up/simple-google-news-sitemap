@@ -1,5 +1,5 @@
 === Simple Google News Sitemap ===
-Contributors:      10up, 
+Contributors:      10up,
 Tags:              sitemap, Google News
 Requires at least: 5.7
 Tested up to:      6.0
@@ -30,22 +30,12 @@ A simple Google News sitemap is generated on-the-fly for articles that were publ
 
 == Requirements ==
 
-- [WP Local Docker](https://github.com/10up/wp-local-docker-v2)
-- [Composer](https://getcomposer.org)
-
-Initialise a `wp-local-docker` instance and inside the `wp-content/plugins` folder, run the following steps:
-
-`
-$  git clone git@gitlab.10up.com:10up-internal/simple-google-news-sitemap.git
-$  cd simple-google-news-sitemap
-$  composer install
-`
-
-Once done, go to the plugins page and activate the plugin.
+- PHP 7.4+
+- [WordPress](http://wordpress.org/) 5.7+
 
 == Usage ==
 
-1. Install the plugin.
+1. Install the plugin. You can upload and install the archived (zip) plugin via the WordPress dashboard (`Plugins` > `Add New` -> `Upload Plugin`) or manually inside of the `wp-content/plugins` directory, and activate on the Plugins dashboard.
 2. To generate the sitemap, simply visit `<YOUR_BLOG_URL>/news-sitemap.xml`.
 3. The sitemap will be stored in cache for faster access with an expiry set to 2 days.
 
@@ -66,7 +56,22 @@ function filter_post_types( array $post_types ) {
 
 If `<YOUR_BLOG_URL>/news-sitemap.xml` results into 404, try saving permalinks and check the sitemap again.
 
-== Local Setup ==
+= Developers =
+
+== Local Requirements ==
+
+- [WP Local Docker](https://github.com/10up/wp-local-docker-v2)
+- [Composer](https://getcomposer.org)
+
+Initialise a `wp-local-docker` instance and inside the `wp-content/plugins` folder, run the following steps:
+
+`
+git clone git@gitlab.10up.com:10up-internal/simple-google-news-sitemap.git
+cd simple-google-news-sitemap
+composer install
+`
+
+Once done, go to the plugins page and activate the plugin.
 
 If using Windows, it is recommended to [use WSL2 as mentioned here](https://github.com/10up/wp-local-docker-v2#windows).
 
@@ -75,9 +80,9 @@ If using Windows, it is recommended to [use WSL2 as mentioned here](https://gith
 All commands listed below should be run from the root of the plugin folder in your local environment, using 10updocker v2.
 
 `
-$  10updocker shell
-$  cd wp-content/plugins/simple-google-news-sitemap
-$  composer setup-tests:local
+10updocker shell
+cd wp-content/plugins/simple-google-news-sitemap
+composer setup-tests:local
 `
 
 Once the above steps are completed, run `composer test` for running the unit tests.

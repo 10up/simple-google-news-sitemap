@@ -57,6 +57,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 
 // Initialise plugin core.
 $plugin_core = new Core();
+$plugin_core->init();
 
 /**
  * Flush rewrites on activation and deactivation.
