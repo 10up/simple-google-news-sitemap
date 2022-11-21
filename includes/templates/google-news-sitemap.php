@@ -41,9 +41,12 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 	do_action( 'simple_google_news_sitemap_start' );
 
 	foreach ( $links as $link ) :
-		if ( empty( $link['url'] ) ) {
+		if ( empty( $link['url'] ) || empty( $link['title'] ) ) {
 			continue;
 		}
+
+		// Remove empty space from the beginning & end of title.
+		$title = trim( $link['title'], '&nbsp;' );
 		?>
 		<url>
 			<loc><?php echo esc_url( $link['url'] ); ?></loc>
@@ -54,7 +57,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 				</news:publication>
 
 				<news:publication_date><?php echo esc_html( date( DATE_W3C, $link['modified'] ) ); // phpcs:ignore ?></news:publication_date>
-				<news:title><?php echo esc_html( trim( $link['title'], '&nbsp;' ) ); ?></news:title>
+				<news:title><?php echo esc_html( $title ); ?></news:title>
 			</news:news>
 		</url>
 		<?php
