@@ -24,13 +24,6 @@ class CacheUtils {
 	private static $cache_key = 'simple_google_news_sitemap_data';
 
 	/**
-	 * Cache group
-	 *
-	 * @var string
-	 */
-	private static $cache_group = 'simple_google_news_sitemap';
-
-	/**
 	 * Cache expiry (number of days)
 	 *
 	 * @var int
@@ -45,11 +38,7 @@ class CacheUtils {
 	 * @return boolean True if the value was set, false otherwise.
 	 */
 	public static function set_cache( $data ): bool {
-		if ( defined( 'WP_CACHE' ) && WP_CACHE ) {
-			return wp_cache_set( self::$cache_key, $data, self::$cache_group, self::$cache_expiry * DAY_IN_SECONDS );
-		} else {
-			return set_transient( self::$cache_key, $data, self::$cache_expiry * DAY_IN_SECONDS );
-		}
+		return set_transient( self::$cache_key, $data, self::$cache_expiry * DAY_IN_SECONDS );
 	}
 
 	/**
@@ -58,11 +47,7 @@ class CacheUtils {
 	 * @return array
 	 */
 	public static function get_cache() {
-		if ( defined( 'WP_CACHE' ) && WP_CACHE ) {
-			$data = wp_cache_get( self::$cache_key, self::$cache_group );
-		} else {
-			$data = get_transient( self::$cache_key );
-		}
+		$data = get_transient( self::$cache_key );
 
 		/**
 		 * Sitemap data does not exist
@@ -87,11 +72,7 @@ class CacheUtils {
 	 * @return boolean True if the data was deleted, false otherwise.
 	 */
 	public static function delete_cache(): bool {
-		if ( defined( 'WP_CACHE' ) && WP_CACHE ) {
-			return wp_cache_delete( self::$cache_key, self::$cache_group );
-		} else {
-			return delete_transient( self::$cache_key );
-		}
+		return delete_transient( self::$cache_key );
 	}
 
 }
