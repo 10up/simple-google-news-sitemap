@@ -97,7 +97,6 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/10up/simple-google-news-site
 
 == Changelog ==
 
-
 = 1.0.2 - 2022-12-08 =
 * **Added:** Made sure all custom hooks have docblocks (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
 * **Added:** "CodeQL scanning", "Dependency Review", and "No response" GitHub Actions (props [@dkotter](https://github.com/dkotter), [@jeffpaul](https://github.com/jeffpaul) via [#15](https://github.com/10up/simple-google-news-sitemap/pull/15)).
