@@ -24,23 +24,9 @@ class Core {
 	private $sitemap_slug = 'news-sitemap';
 
 	/**
-	 * Post statuses.
-	 *
-	 * @var array
-	 */
-	private $post_statuses = [
-		'future',
-		'private',
-		'pending',
-		'draft',
-		'trash',
-		'auto-draft',
-	];
-
-	/**
 	 * Setup hooks.
 	 */
-	public function __construct() {
+	public function init() {
 		add_filter( 'template_include', [ $this, 'load_sitemap_template' ] );
 		add_filter( 'posts_pre_query', [ $this, 'disable_main_query_for_sitemap_xml' ], 10, 2 );
 		add_filter( 'robots_txt', [ $this, 'add_sitemap_robots_txt' ] );
@@ -156,7 +142,7 @@ class Core {
 
 		// Purge cache on updates.
 		if ( 'publish' === $old_status && $old_status === $post->post_status ) {
-			return Utils::delete_cache();
+			return CacheUtils::delete_cache();
 		}
 
 		return false;
@@ -183,16 +169,35 @@ class Core {
 		$post_publish_date = strtotime( $post->post_date );
 		$range             = strtotime( $sitemap->get_range() );
 
+		// Post statuses we clear the cache on.
+		$post_statuses = [
+			'future',
+			'private',
+			'pending',
+			'draft',
+			'trash',
+			'auto-draft',
+		];
+
+		/**
+		 * Filter the post statuses we look for to determine if cache needs cleared.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $post_statuses Post statuses we clear cache on.
+		 */
+		$post_statuses = apply_filters( 'simple_google_news_sitemap_post_statuses_to_clear', $post_statuses );
+
 		/**
 		 * POST status is updated or changed to trash / future / pending / private / draft.
 		 * If the publish date falls within the range, we flush cache.
 		 */
 		if (
-			'publish' === $old_status && in_array( $new_status, $this->post_statuses, true )
-			|| in_array( $old_status, $this->post_statuses, true ) && 'publish' === $new_status
+			'publish' === $old_status && in_array( $new_status, $post_statuses, true )
+			|| in_array( $old_status, $post_statuses, true ) && 'publish' === $new_status
 		) {
 			if ( $post_publish_date > $range ) {
-				return Utils::delete_cache();
+				return CacheUtils::delete_cache();
 			}
 		}
 
@@ -205,6 +210,13 @@ class Core {
 	 * @return boolean
 	 */
 	public function ping_google(): bool {
+		/**
+		 * Decide whether to ping Google when the sitemap changes.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param boolean $should_ping Should we ping Google? Default true.
+		 */
 		if ( false === apply_filters( 'simple_google_news_sitemap_ping', true ) ) {
 			return false;
 		}
@@ -256,7 +268,7 @@ class Core {
 
 		// If the publish date is within range from current time, we purge the cache.
 		if ( $post_publish_date > $range ) {
-			return Utils::delete_cache();
+			return CacheUtils::delete_cache();
 		}
 
 		// For rest, we do nothing.

@@ -58,12 +58,24 @@ class Sitemap {
 	 * @return array
 	 */
 	public function supported_post_types(): array {
-		$post_types = get_post_types( [ 'public' => true ] );
+		$post_types = array_filter( get_post_types(), 'is_post_type_viewable' );
 
-		if ( ! empty( $post_types['attachment'] ) ) {
-			unset( $post_types['attachment'] );
+		$exclude_post_types = [
+			'attachment',
+			'redirect_rule',
+		];
+
+		foreach ( $exclude_post_types as $exclude_post_type ) {
+			unset( $post_types[ $exclude_post_type ] );
 		}
 
+		/**
+		 * Filter the list of supported post types.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $post_types List of post types to support.
+		 */
 		return apply_filters( 'simple_google_news_sitemap_post_types', $post_types );
 	}
 
@@ -97,6 +109,17 @@ class Sitemap {
 						'modified' => strtotime( $result['post_date'] ),
 					];
 
+					/**
+					 * Filter an individual item before it goes to the sitemap.
+					 *
+					 * This can be used to modify a specific item or remove an
+					 * item all together.
+					 *
+					 * @since 1.0.0
+					 *
+					 * @param array  $item The item that will be displayed.
+					 * @param string $post_type The post type of the item.
+					 */
 					$item = apply_filters( 'simple_google_news_sitemap_post', $item, $post_type );
 
 					if ( ! empty( $item ) && ! empty( $item['url'] ) ) {
@@ -111,7 +134,7 @@ class Sitemap {
 		}
 
 		// Add sitemap data to cache (if available) or wp_options.
-		Utils::set_cache( $this->data );
+		CacheUtils::set_cache( $this->data );
 	}
 
 	/**
