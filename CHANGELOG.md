@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ## [Unreleased] - TBD
 
-## [1.0.2] - 2022-12-08
+## [1.0.2] - 2022-12-07
 ### Added
 - Made sure all custom hooks have docblocks (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
 - "CodeQL scanning", "Dependency Review", and "No response" GitHub Actions (props [@dkotter](https://github.com/dkotter), [@jeffpaul](https://github.com/jeffpaul) via [#15](https://github.com/10up/simple-google-news-sitemap/pull/15)).
