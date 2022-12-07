@@ -1,9 +1,9 @@
 === Simple Google News Sitemap ===
-Contributors:      10up,
+Contributors:      10up, jeffpaul, dkotter, akshitsethi, ritteshpatel, brentvr
 Tags:              sitemap, Google News
 Requires at least: 5.7
 Tested up to:      6.0
-Stable tag:        1.0.1
+Stable tag:        1.0.2
 Requires PHP:      7.4
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -96,6 +96,19 @@ Once the above steps are completed, run `composer test` for running the unit tes
 Please read [CODE_OF_CONDUCT.md](https://github.com/10up/simple-google-news-sitemap/blob/develop/CODE_OF_CONDUCT.md) for details on our code of conduct, [CONTRIBUTING.md](https://github.com/10up/simple-google-news-sitemap/blob/develop/CONTRIBUTING.md) for details on the process for submitting pull requests to us, and [CREDITS.md](https://github.com/10up/simple-google-news-sitemap/blob/develop/CREDITS.md) for a list of maintainers, contributors, and libraries used in this repository.
 
 == Changelog ==
+
+= 1.0.2 - 2022-12-08 =
+* **Added:** Made sure all custom hooks have docblocks (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
+* **Added:** "CodeQL scanning", "Dependency Review", and "No response" GitHub Actions (props [@dkotter](https://github.com/dkotter), [@jeffpaul](https://github.com/jeffpaul) via [#15](https://github.com/10up/simple-google-news-sitemap/pull/15)).
+* **Changed:** Updated readmes to change structure a bit and add additional information (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
+* **Changed:** Ensured our minimum PHP version was set the same across all files (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
+* **Changed:** Modify how we determine which post types to support by default (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
+* **Changed:** Move hooks from a constructor to an init method (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
+* **Changed:** Renamed our utility class to `CacheUtils` as it currently only handles caching functionality (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
+* **Changed:** Add a filter around the post statuses that we clear the cache on (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
+* **Changed:** Simplified cache handling logic (props [@akshitsethi](https://github.com/akshitsethi), [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#19](https://github.com/10up/simple-google-news-sitemap/pull/19)).
+* **Changed:** Split "Push" GitHub Action into "Linting" and "Testing" GitHub Actions (props [@dkotter](https://github.com/dkotter), [@jeffpaul](https://github.com/jeffpaul) via [#15](https://github.com/10up/simple-google-news-sitemap/pull/15)).
+* **Fixed:** "Push" GitHub Action (props [@akshitsethi](https://github.com/akshitsethi), [@jeffpaul](https://github.com/jeffpaul), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#10](https://github.com/10up/simple-google-news-sitemap/pull/10)).
 
 = 1.0.1 - 2022-08-19 =
 * **Fixed:** News sitemap entry in robots.txt file (props [@Ritesh-patel](https://github.com/Ritesh-patel) via [#9](https://github.com/10up/simple-google-news-sitemap/pull/9)).

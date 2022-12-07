@@ -1,0 +1,21 @@
+# Directories
+/.git
+/.github
+/bin
+/tests
+
+# Files
+.distignore
+.editorconfig
+.gitignore
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+composer.json
+composer.lock
+CONTRIBUTING.md
+CREDITS.md
+LICENSE.md
+phpcs.xml
+phpunit.xml
+phpunit.xml
+README.md
