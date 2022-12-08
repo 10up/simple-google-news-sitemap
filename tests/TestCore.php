@@ -109,6 +109,17 @@ class TestCore extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Adds sitemap URL to robots.txt file.
+	 */
+	public function testAddSitemapRobotsTxtPlainPermalinks() {
+		$this->set_permalink_structure( '' );
+		$core = new Core();
+		$url = add_query_arg( 'news-sitemap', 'true', home_url( '/' ) );
+
+		$this->assertEquals( "\nSitemap: {$url}\n", $core->add_sitemap_robots_txt( '' ) );
+	}
+
+	/**
 	 * Pings google service for newly updated sitemap.
 	 * When pinging is not enabled.
 	 */
