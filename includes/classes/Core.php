@@ -229,7 +229,7 @@ class Core {
 		$url = site_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
 
 		// Ping Google.
-		$ping = wp_remote_get( sprintf( 'https://www.google.com/ping?sitemap=%s', rawurlencode( esc_url_raw( $url ) ) ), [ 'blocking' => false ] );
+		$ping = wp_remote_get( sprintf( 'https://www.google.com/ping?sitemap=%s', esc_url_raw( $url ) ), [ 'blocking' => false ] );
 
 		if ( ! is_array( $ping ) || is_wp_error( $ping ) ) {
 			return false;
