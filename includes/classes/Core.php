@@ -188,7 +188,7 @@ class Core {
 		 */
 		$post_statuses = apply_filters( 'simple_google_news_sitemap_post_statuses_to_clear', $post_statuses );
 
-		/**
+		/*
 		 * POST status is updated or changed to trash / future / pending / private / draft.
 		 * If the publish date falls within the range, we flush cache.
 		 */
