@@ -39,15 +39,18 @@ jobs:
       with:
         php-version: '7.4'
         coverage: none
+        tools: composer:v2, cs2pr
 
     - name: Install dependencies
-      run: composer install
+      run: composer install --ignore-platform-reqs
 
     - name: Check PHPCS standard
       run: ./vendor/bin/phpcs -i
 
     - name: PHPCS check
-      uses: chekalsky/phpcs-action@v1
-      with:
-        enable_warnings: true
-        phpcs_bin_path: './vendor/bin/phpcs simple-google-news-sitemap.php includes --runtime-set testVersion 7.4-'
+      id: phpcs-sniffs
+      run: ./vendor/bin/phpcs . --runtime-set testVersion 7.4- --report-full --report-checkstyle=./.github/phpcs-report.xml
+
+    - name: Show PHPCS results in PR
+      if: ${{ always() }}
+      run: cs2pr ./.github/phpcs-report.xml
