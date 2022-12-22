@@ -56,7 +56,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 					<news:language><?php echo esc_html( $language ); ?></news:language>
 				</news:publication>
 
-				<news:publication_date><?php echo esc_html( date( DATE_W3C, $link['modified'] ) ); // phpcs:ignore ?></news:publication_date>
+				<news:publication_date><?php echo esc_html( date( DATE_W3C, $link['modified'] ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date ?></news:publication_date>
 				<news:title><?php echo esc_html( $title ); ?></news:title>
 			</news:news>
 		</url>
