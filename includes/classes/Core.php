@@ -117,7 +117,10 @@ class Core {
 	 * @return string
 	 */
 	public function add_sitemap_robots_txt( string $output ): string {
-		$url     = site_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
+		$url = home_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
+		if ( ! get_option( 'permalink_structure' ) ) {
+			$url = add_query_arg( $this->sitemap_slug, 'true', home_url( '/' ) );
+		}
 		$output .= "\n" . esc_html__( 'Sitemap', 'simple-google-news-sitemap' ) . ": {$url}\n";
 
 		return $output;
