@@ -74,7 +74,9 @@ class Sitemap {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param array $post_types List of post types to support.
+		 * @hook simple_google_news_sitemap_post_types
+		 * @param {array} $post_types List of post types to support.
+		 * @returns {array} List of post types to support.
 		 */
 		return apply_filters( 'simple_google_news_sitemap_post_types', $post_types );
 	}
@@ -115,8 +117,10 @@ class Sitemap {
 					 *
 					 * @since 1.0.0
 					 *
-					 * @param array  $item The item that will be displayed.
-					 * @param string $post_type The post type of the item.
+					 * @hook simple_google_news_sitemap_post
+					 * @param {array}  $item The item that will be displayed.
+					 * @param {string} $post_type The post type of the item.
+					 * @returns {array} The item that will be displayed.
 					 */
 					$item = apply_filters( 'simple_google_news_sitemap_post', $item, $post_type );
 

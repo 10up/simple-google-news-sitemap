@@ -187,7 +187,9 @@ class Core {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param array $post_statuses Post statuses we clear cache on.
+		 * @hook simple_google_news_sitemap_post_statuses_to_clear
+		 * @param {array} $post_statuses Post statuses we clear cache on.
+		 * @returns {array} Filtered post statuses.
 		 */
 		$post_statuses = apply_filters( 'simple_google_news_sitemap_post_statuses_to_clear', $post_statuses );
 
@@ -218,7 +220,9 @@ class Core {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param boolean $should_ping Should we ping Google? Default true.
+		 * @hook simple_google_news_sitemap_ping
+		 * @param {boolean} $should_ping Should we ping Google? Default true.
+		 * @returns {boolean} Should we ping Google?
 		 */
 		if ( false === apply_filters( 'simple_google_news_sitemap_ping', true ) ) {
 			return false;
