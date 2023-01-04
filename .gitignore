@@ -6,3 +6,9 @@
 
 # Cache files
 *.cache
+
+# npm packages
+/node_modules/
+
+# Hookdoc generated files
+/docs/
