@@ -8,13 +8,17 @@
 .distignore
 .editorconfig
 .gitignore
+.nvmrc
 CHANGELOG.md
 CODE_OF_CONDUCT.md
 composer.json
 composer.lock
 CONTRIBUTING.md
 CREDITS.md
+hookdoc-conf.json
 LICENSE.md
+package.json
+package-lock.json
 phpcs.xml
 phpunit.xml
 phpunit.xml
