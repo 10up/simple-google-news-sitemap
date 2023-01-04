@@ -1,0 +1,29 @@
+name: Build Hook Docs
+
+on:
+ push:
+   branches:
+    - trunk
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use desired version of NodeJS
+      uses: actions/setup-node@v3
+      with:
+          node-version-file: '.nvmrc'
+
+    - name: Install dependencies and Generate docs
+      run: |
+        npm install
+        npm run build:docs
+      env:
+        CI: true
+
+    - name: Deploy to GH Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: './docs'
