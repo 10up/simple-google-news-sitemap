@@ -49,7 +49,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 		}
 
 		// Remove empty space from the beginning & end of title.
-		$title = trim( $link['title'], '&nbsp;' );
+		$title = trim( str_replace( '&nbsp;', ' ', $link['title'] ) );
 		?>
 		<url>
 			<loc><?php echo esc_url( $link['url'] ); ?></loc>
