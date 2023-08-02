@@ -236,18 +236,17 @@ class Core {
 		$url = site_url( sprintf( '/%s.xml', $this->sitemap_slug ) );
 
 		// Ping Google.
-		$ping = wp_remote_get( sprintf( 'https://www.google.com/ping?sitemap=%s', esc_url_raw( $url ) ), [ 'blocking' => false ] );
+		$ping = wp_remote_get( sprintf( 'https://www.google.com/ping?sitemap=%s', rawurlencode( esc_url_raw( $url ) ) ), [ 'blocking' => false ] );
 
 		if ( ! is_array( $ping ) || is_wp_error( $ping ) ) {
 			return false;
 		}
 
-		// Successful request only if the response code is 200.
-		if ( 200 === wp_remote_retrieve_response_code( $ping ) ) {
-			return true;
-		}
-
-		return false;
+		// Assume a successful ping.
+		// Returning "true" when the "wp_remote_get()" method doesn't return a "WP_Error" object for non-blocking requests.
+		// When a "WP_Error" object is not returned, there is no way to determine if the request was successful or not.
+		// Provided that the URL is correct and reachable, it should be OK to return "true" in that case.
+		return true;
 	}
 
 	/**
