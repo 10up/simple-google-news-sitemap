@@ -98,7 +98,7 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/10up/simple-google-news-site
 == Changelog ==
 
 = 1.1.0 - 2023-08-31 =
-* **Added:** Plugin banner and image assets (props [@jeffpaul](https://github.com/jeffpaul) via [#26](https://github.com/10up/simple-google-news-sitemap/pull/26)).
+* **Added:** Plugin banner and image assets (props [Brooke Campbell](https://www.linkedin.com/in/brookecampbelldesign/), [@jeffpaul](https://github.com/jeffpaul) via [#26](https://github.com/10up/simple-google-news-sitemap/pull/26)).
 * **Added:** Developer documentation site generated using hookdocs (props [@iamdharmesh](https://github.com/iamdharmesh), [@dkotter](https://github.com/dkotter) via [#30](https://github.com/10up/simple-google-news-sitemap/pull/30)).
 * **Changed:** Modified the way `Core::ping_google()` responds when `wp_remote_get()` method doesn't return a `WP_Error` object for non-blocking requests (props [@kmgalanakis](https://github.com/kmgalanakis), [@brentvr](https://github.com/brentvr) via [#32](https://github.com/10up/simple-google-news-sitemap/pull/32)).
 * **Changed:** Bump WordPress "tested up to" version to 6.3 props ([@dkotter](https://github.com/dkotter) via [#35](https://github.com/10up/simple-google-news-sitemap/pull/35)).
