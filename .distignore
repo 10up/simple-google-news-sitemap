@@ -1,6 +1,7 @@
 # Directories
 /.git
 /.github
+/.wordpress-org
 /bin
 /tests
 
@@ -17,6 +18,5 @@ LICENSE.md
 package.json
 package-lock.json
 phpcs.xml
-phpunit.xml
 phpunit.xml
 README.md
