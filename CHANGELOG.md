@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ### Changed
 - Modified the way `Core::ping_google()` responds when `wp_remote_get()` method doesn't return a `WP_Error` object for non-blocking requests (props [@kmgalanakis](https://github.com/kmgalanakis), [@brentvr](https://github.com/brentvr) via [#32](https://github.com/10up/simple-google-news-sitemap/pull/32)).
-- Bump WordPress "tested up to" version to 6.3 props ([@dkotter](https://github.com/dkotter) via [#35](https://github.com/10up/simple-google-news-sitemap/pull/35)).
+- Bump WordPress "tested up to" version to 6.3 props (props [@dkotter](https://github.com/dkotter) via [#35](https://github.com/10up/simple-google-news-sitemap/pull/35)).
 
 ### Fixed
 - Various coding standards issues (props [@peterwilsoncc](https://github.com/peterwilsoncc), [@akshitsethi](https://github.com/akshitsethi) via [#24](https://github.com/10up/simple-google-news-sitemap/pull/24)).
