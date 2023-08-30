@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ## [1.1.0] - 2023-08-31
 ### Added
-- Plugin banner and image assets (props [@jeffpaul](https://github.com/jeffpaul) via [#26](https://github.com/10up/simple-google-news-sitemap/pull/26)).
+- Plugin banner and image assets (props [Brooke Campbell](https://www.linkedin.com/in/brookecampbelldesign/), [@jeffpaul](https://github.com/jeffpaul) via [#26](https://github.com/10up/simple-google-news-sitemap/pull/26)).
 - Developer documentation site generated using hookdocs (props [@iamdharmesh](https://github.com/iamdharmesh), [@dkotter](https://github.com/dkotter) via [#30](https://github.com/10up/simple-google-news-sitemap/pull/30)).
 
 ### Changed
