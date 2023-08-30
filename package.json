@@ -1,6 +1,6 @@
 {
   "name": "simple-google-news-sitemap",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A simple Google News sitemap is generated on-the-fly for articles that were published in the last two days. Output is saved in cache or as a transient for fast reading and displaying on the front end.",
   "scripts": {
     "build:docs": "rm -rf docs && jsdoc -c hookdoc-conf.json simple-google-news-sitemap.php includes"
