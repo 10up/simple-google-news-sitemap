@@ -2,8 +2,8 @@
 Contributors:      10up, jeffpaul, dkotter, akshitsethi, ritteshpatel, brentvr
 Tags:              sitemap, Google News
 Requires at least: 5.7
-Tested up to:      6.0
-Stable tag:        1.0.2
+Tested up to:      6.3
+Stable tag:        1.1.0
 Requires PHP:      7.4
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -97,7 +97,17 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/10up/simple-google-news-site
 
 == Changelog ==
 
-= 1.0.2 - 2022-12-08 =
+= 1.1.0 - 2023-08-31 =
+* **Added:** Plugin banner and image assets (props [Brooke Campbell](https://www.linkedin.com/in/brookecampbelldesign/), [@jeffpaul](https://github.com/jeffpaul) via [#26](https://github.com/10up/simple-google-news-sitemap/pull/26)).
+* **Added:** Developer documentation site generated using hookdocs (props [@iamdharmesh](https://github.com/iamdharmesh), [@dkotter](https://github.com/dkotter) via [#30](https://github.com/10up/simple-google-news-sitemap/pull/30)).
+* **Changed:** Modified the way `Core::ping_google()` responds when `wp_remote_get()` method doesn't return a `WP_Error` object for non-blocking requests (props [@kmgalanakis](https://github.com/kmgalanakis), [@brentvr](https://github.com/brentvr) via [#32](https://github.com/10up/simple-google-news-sitemap/pull/32)).
+* **Changed:** Bump WordPress "tested up to" version to 6.3 props ([@dkotter](https://github.com/dkotter) via [#35](https://github.com/10up/simple-google-news-sitemap/pull/35)).
+* **Fixed:** Various coding standards issues (props [@peterwilsoncc](https://github.com/peterwilsoncc), [@akshitsethi](https://github.com/akshitsethi) via [#24](https://github.com/10up/simple-google-news-sitemap/pull/24)).
+* **Fixed:** Potential 404 for sitemap URL added to robots.txt (props [@peterwilsoncc](https://github.com/peterwilsoncc), [@akshitsethi](https://github.com/akshitsethi) via [#25](https://github.com/10up/simple-google-news-sitemap/pull/25)).
+* **Fixed:** Prevent PHP deprecations causing linting failures (props [@peterwilsoncc](https://github.com/peterwilsoncc), [@cadic](https://github.com/cadic) via [#28](https://github.com/10up/simple-google-news-sitemap/pull/28)).
+* **Fixed:** Wrong character removal from post title (props [@jayedul](https://github.com/jayedul), [@cadic](https://github.com/cadic) via [#31](https://github.com/10up/simple-google-news-sitemap/pull/31)).
+
+= 1.0.2 - 2022-12-07 =
 * **Added:** Made sure all custom hooks have docblocks (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).
 * **Added:** "CodeQL scanning", "Dependency Review", and "No response" GitHub Actions (props [@dkotter](https://github.com/dkotter), [@jeffpaul](https://github.com/jeffpaul) via [#15](https://github.com/10up/simple-google-news-sitemap/pull/15)).
 * **Changed:** Updated readmes to change structure a bit and add additional information (props [@dkotter](https://github.com/dkotter), [@Ritesh-patel](https://github.com/Ritesh-patel) via [#14](https://github.com/10up/simple-google-news-sitemap/pull/14)).

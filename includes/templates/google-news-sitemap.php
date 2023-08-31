@@ -14,7 +14,9 @@ $links = CacheUtils::get_cache();
  *
  * @since 1.0.0
  *
- * @param array $links Array of items to be output.
+ * @hook simple_google_news_sitemap_data
+ * @param {array} $links Array of items to be output.
+ * @returns {array} Array of items to be output.
  */
 $links = apply_filters( 'simple_google_news_sitemap_data', $links );
 
@@ -37,6 +39,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 	 * Add extra data to the start of the sitemap.
 	 *
 	 * @since 1.0.0
+	 * @hook simple_google_news_sitemap_start
 	 */
 	do_action( 'simple_google_news_sitemap_start' );
 
@@ -46,7 +49,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 		}
 
 		// Remove empty space from the beginning & end of title.
-		$title = trim( $link['title'], '&nbsp;' );
+		$title = trim( str_replace( '&nbsp;', ' ', $link['title'] ) );
 		?>
 		<url>
 			<loc><?php echo esc_url( $link['url'] ); ?></loc>
@@ -56,7 +59,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 					<news:language><?php echo esc_html( $language ); ?></news:language>
 				</news:publication>
 
-				<news:publication_date><?php echo esc_html( date( DATE_W3C, $link['modified'] ) ); // phpcs:ignore ?></news:publication_date>
+				<news:publication_date><?php echo esc_html( date( DATE_W3C, $link['modified'] ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date ?></news:publication_date>
 				<news:title><?php echo esc_html( $title ); ?></news:title>
 			</news:news>
 		</url>
@@ -68,6 +71,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 	 * Add extra data to the end of the sitemap.
 	 *
 	 * @since 1.0.0
+	 * @hook simple_google_news_sitemap_end
 	 */
 	do_action( 'simple_google_news_sitemap_end' );
 	?>

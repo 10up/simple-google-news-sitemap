@@ -49,7 +49,7 @@ class CacheUtils {
 	public static function get_cache() {
 		$data = get_transient( self::$cache_key );
 
-		/**
+		/*
 		 * Sitemap data does not exist
 		 * Attempting to build a fresh one
 		 */

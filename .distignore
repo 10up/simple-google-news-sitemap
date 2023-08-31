@@ -1,21 +1,22 @@
 # Directories
 /.git
 /.github
+/.wordpress-org
 /bin
 /tests
 
 # Files
-.distignore
-.editorconfig
-.gitignore
+.*
 CHANGELOG.md
 CODE_OF_CONDUCT.md
 composer.json
 composer.lock
 CONTRIBUTING.md
 CREDITS.md
+hookdoc-conf.json
 LICENSE.md
+package.json
+package-lock.json
 phpcs.xml
-phpunit.xml
 phpunit.xml
 README.md
