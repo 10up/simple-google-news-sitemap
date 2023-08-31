@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: templates/google-news-sitemap.php - 10up Simple Google News Sitemap Hook Docs</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans:300,400|Playfair+Display:900&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="styles-10up.css">
+</head>
+
+<body>
+
+<div id="main">
+
+	
+    <h1 class="page-title">Source: templates/google-news-sitemap.php</h1>
+	
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;?php
+/**
+ * Sitemap template
+ *
+ * @package  simple-google-news-sitemap
+ */
+
+use SimpleGoogleNewsSitemap\CacheUtils;
+
+$links = CacheUtils::get_cache();
+
+/**
+ * Filter all items that will be output in the sitemap.
+ *
+ * @since 1.0.0
+ *
+ * @hook simple_google_news_sitemap_data
+ * @param {array} $links Array of items to be output.
+ * @returns {array} Array of items to be output.
+ */
+$links = apply_filters( 'simple_google_news_sitemap_data', $links );
+
+// Used for publication name and language.
+$publication = get_bloginfo( 'name' );
+$language    = get_bloginfo( 'language' );
+
+if ( empty( $links ) ) {
+	$links = [];
+}
+
+header( 'Content-type: application/xml; charset=UTF-8' );
+echo '&lt;?xml version="1.0" encoding="UTF-8"?>';
+
+?>
+
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+	&lt;?php
+	/**
+	 * Add extra data to the start of the sitemap.
+	 *
+	 * @since 1.0.0
+	 * @hook simple_google_news_sitemap_start
+	 */
+	do_action( 'simple_google_news_sitemap_start' );
+
+	foreach ( $links as $link ) :
+		if ( empty( $link['url'] ) || empty( $link['title'] ) ) {
+			continue;
+		}
+
+		// Remove empty space from the beginning &amp; end of title.
+		$title = trim( str_replace( '&amp;nbsp;', ' ', $link['title'] ) );
+		?>
+		&lt;url>
+			&lt;loc>&lt;?php echo esc_url( $link['url'] ); ?>&lt;/loc>
+			&lt;news:news>
+				&lt;news:publication>
+					&lt;news:name>&lt;?php echo esc_html( $publication ); ?>&lt;/news:name>
+					&lt;news:language>&lt;?php echo esc_html( $language ); ?>&lt;/news:language>
+				&lt;/news:publication>
+
+				&lt;news:publication_date>&lt;?php echo esc_html( date( DATE_W3C, $link['modified'] ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date ?>&lt;/news:publication_date>
+				&lt;news:title>&lt;?php echo esc_html( $title ); ?>&lt;/news:title>
+			&lt;/news:news>
+		&lt;/url>
+		&lt;?php
+
+	endforeach;
+
+	/**
+	 * Add extra data to the end of the sitemap.
+	 *
+	 * @since 1.0.0
+	 * @hook simple_google_news_sitemap_end
+	 */
+	do_action( 'simple_google_news_sitemap_end' );
+	?>
+&lt;/urlset>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+    <footer>
+		<a href="https://github.com/10up/simple-google-news-sitemap/">Simple Google News Sitemap on GitHub</a> &bull;
+		<a href="https://10up.com/careers">Careers at 10up</a>
+	</footer>
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Actions</h3><ul><li><a href="simple_google_news_sitemap_end.html">simple_google_news_sitemap_end</a></li><li><a href="simple_google_news_sitemap_start.html">simple_google_news_sitemap_start</a></li></ul><h3>Filters</h3><ul><li><a href="simple_google_news_sitemap_data.html">simple_google_news_sitemap_data</a></li><li><a href="simple_google_news_sitemap_ping.html">simple_google_news_sitemap_ping</a></li><li><a href="simple_google_news_sitemap_post.html">simple_google_news_sitemap_post</a></li><li><a href="simple_google_news_sitemap_post_statuses_to_clear.html">simple_google_news_sitemap_post_statuses_to_clear</a></li><li><a href="simple_google_news_sitemap_post_types.html">simple_google_news_sitemap_post_types</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
