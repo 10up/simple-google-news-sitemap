@@ -10,8 +10,8 @@
  * Plugin Name:       Simple Google News Sitemap
  * Plugin URI:        https://github.com/10up/simple-google-news-sitemap
  * Description:       A simple Google News sitemap is generated on-the-fly for articles that were published in the last two days.
- * Version:           1.1.0
- * Requires at least: 5.7
+ * Version:           1.1.1
+ * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            10up
  * Author URI:        https://10up.com
