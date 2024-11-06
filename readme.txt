@@ -1,7 +1,8 @@
 === Simple Google News Sitemap ===
 Contributors:      10up, jeffpaul, dkotter, akshitsethi, ritteshpatel, brentvr
 Tags:              sitemap, Google News
-Tested up to:      6.6
+Requires at least: 6.5
+Tested up to:      6.7
 Stable tag:        1.1.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -29,7 +30,7 @@ A simple Google News sitemap is generated on-the-fly for articles that were publ
 == Requirements ==
 
 - PHP 7.4+
-- [WordPress](http://wordpress.org/) 5.7+
+- [WordPress](http://wordpress.org/) 6.5+
 
 == Usage ==
 
