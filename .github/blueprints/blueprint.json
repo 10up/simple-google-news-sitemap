@@ -13,7 +13,7 @@
       "step": "installPlugin",
       "pluginData": {
         "resource": "url",
-        "url": "https://github-proxy.com/proxy/?repo=10up/simple-google-news-sitemap&branch=stable"
+        "url": "https://github-proxy.com/proxy/?repo=10up/simple-google-news-sitemap&branch=trunk"
       },
       "options": {
         "activate": true
