@@ -18,6 +18,13 @@
       "options": {
         "activate": true
       }
+    },
+    {
+      "step": "importFile",
+      "file": {
+        "resource": "wordpress.org/theme-unit-test",
+        "type": "theme"
+      }
     }
   ]
 }
