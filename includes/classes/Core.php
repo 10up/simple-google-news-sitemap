@@ -36,6 +36,8 @@ class Core {
 		add_action( 'transition_post_status', [ $this, 'purge_sitemap_data_on_status_change' ], 1000, 3 );
 		add_action( 'publish_post', [ $this, 'ping_google' ], 2000 );
 		add_action( 'delete_post', [ $this, 'purge_sitemap_data_on_delete' ], 1000, 2 );
+
+		add_filter( 'plugin_action_links_simple-google-news-sitemap/simple-google-news-sitemap.php', [ __CLASS__, 'sitemap_link' ], 10, 1 );
 	}
 
 	/**
@@ -279,6 +281,21 @@ class Core {
 
 		// For rest, we do nothing.
 		return false;
+	}
+
+	/**
+	 * Add the Simple Google News Sitemap sitemap link to its plugin list
+	 *
+	 * @param string[] $actions
+	 * @return string[]
+	 */
+	public static function sitemap_link( $actions ) {
+		$actions[] = sprintf(
+			'<a href="%1$s">news-sitemap.xml</a>',
+			home_url( 'news-sitemap.xml' )
+		);
+
+		return $actions;
 	}
 
 }
