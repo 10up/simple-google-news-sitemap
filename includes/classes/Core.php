@@ -286,7 +286,7 @@ class Core {
 	/**
 	 * Add the Simple Google News Sitemap sitemap link to its plugin list
 	 *
-	 * @param string[] $actions
+	 * @param string[] $actions Plugin actions.
 	 * @return string[]
 	 */
 	public static function sitemap_link( $actions ) {
