@@ -292,7 +292,7 @@ class Core {
 	public static function sitemap_link( $actions ) {
 		$actions[] = sprintf(
 			'<a href="%1$s">news-sitemap.xml</a>',
-			home_url( 'news-sitemap.xml' )
+			esc_url( home_url( 'news-sitemap.xml' ) )
 		);
 
 		return $actions;
