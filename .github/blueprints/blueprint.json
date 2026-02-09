@@ -26,6 +26,10 @@
         "resource": "url",
         "url": "https://raw.githubusercontent.com/10up/simple-google-news-sitemap/6b5945d09130b8a853c090bcec0d9e15421c1cb6/.github/blueprints/sample-data.xml"
       }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post update $(wp post list --post_type=page --format=ids) --post_author=1"
     }
   ]
 }
