@@ -20,10 +20,10 @@
       }
     },
     {
-      "step": "importFile",
+      "step": "importWxr",
       "file": {
-        "resource": "wordpress.org/theme-unit-test",
-        "type": "theme"
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/WordPress/theme-test-data/refs/heads/master/themeunittestdata.wordpress.xml"
       }
     }
   ]
