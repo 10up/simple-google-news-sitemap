@@ -2,7 +2,7 @@
 
 ![Simple Google News Sitemap](https://github.com/10up/simple-google-news-sitemap/blob/develop/.wordpress-org/banner-1544x500.png)
 
-[![Support Level](https://img.shields.io/badge/support-beta-blueviolet.svg)](#support-level) [![Release Version](https://img.shields.io/github/release/10up/simple-google-news-sitemap.svg)](https://github.com/10up/simple-google-news-sitemap/releases/latest) ![WordPress tested up to version](https://img.shields.io/badge/WordPress-v6.4%20tested-success.svg) [![License](https://img.shields.io/github/license/10up/simple-google-news-sitemap.svg)](https://github.com/10up/simple-google-news-sitemap/blob/develop/LICENSE.md) [![Dependency Review](https://github.com/10up/simple-google-news-sitemap/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/10up/simple-google-news-sitemap/actions/workflows/dependency-review.yml)[![WordPress Playground Demo](https://img.shields.io/badge/Playground_Demo-8A2BE2?logo=wordpress&logoColor=FFFFFF&labelColor=3858E9&color=3858E9)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/10up/simple-google-news-sitemap/develop/.github/blueprints/blueprint.json)
+[![Support Level](https://img.shields.io/badge/support-beta-blueviolet.svg)](#support-level) [![Release Version](https://img.shields.io/github/release/10up/simple-google-news-sitemap.svg)](https://github.com/10up/simple-google-news-sitemap/releases/latest) ![WordPress tested up to version](https://img.shields.io/badge/WordPress-v6.8%20tested-success.svg) [![License](https://img.shields.io/github/license/10up/simple-google-news-sitemap.svg)](https://github.com/10up/simple-google-news-sitemap/blob/develop/LICENSE.md) [![Dependency Review](https://github.com/10up/simple-google-news-sitemap/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/10up/simple-google-news-sitemap/actions/workflows/dependency-review.yml) [![WordPress Playground Demo](https://img.shields.io/badge/Playground_Demo-8A2BE2?logo=wordpress&logoColor=FFFFFF&labelColor=3858E9&color=3858E9)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/10up/simple-google-news-sitemap/develop/.github/blueprints/blueprint.json)
 [![Linting](https://github.com/10up/simple-google-news-sitemap/actions/workflows/lint.yml/badge.svg)](https://github.com/10up/simple-google-news-sitemap/actions/workflows/lint.yml) [![Test](https://github.com/10up/simple-google-news-sitemap/actions/workflows/test.yml/badge.svg)](https://github.com/10up/simple-google-news-sitemap/actions/workflows/test.yml) [![CodeQL scanning](https://github.com/10up/simple-google-news-sitemap/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/10up/simple-google-news-sitemap/actions/workflows/codeql-analysis.yml)
 
 > A simple Google News sitemap is generated on-the-fly for articles that were published in the last two days. Output is saved in cache or as a transient for fast reading and displaying on the front end.
@@ -24,7 +24,7 @@
 ## Requirements
 
 - PHP 7.4+
-- [WordPress](http://wordpress.org/) 6.5+
+- [WordPress](http://wordpress.org/) 6.6+
 
 ## Usage
 
@@ -79,6 +79,12 @@ composer setup-tests:local
 ```
 
 Once the above steps are completed, run `composer test` for running the unit tests.
+
+## Frequently Asked Questions
+
+### Where do I report security bugs found in this plugin?
+
+Please report security bugs found in the source code of the undefined plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/34c661b4-0881-4fd9-84f4-f03e723174e1).  The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 ## Support Level
 

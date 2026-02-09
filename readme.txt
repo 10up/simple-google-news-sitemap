@@ -1,7 +1,7 @@
 === Simple Google News Sitemap ===
 Contributors:      10up, jeffpaul, dkotter, akshitsethi, ritteshpatel, brentvr
 Tags:              sitemap, Google News
-Tested up to:      6.7
+Tested up to:      6.8
 Stable tag:        1.1.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -84,6 +84,12 @@ composer setup-tests:local
 `
 
 Once the above steps are completed, run `composer test` for running the unit tests.
+
+== Frequently Asked Questions ==
+
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the undefined plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/34c661b4-0881-4fd9-84f4-f03e723174e1).  The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 == Support Level ==
 
