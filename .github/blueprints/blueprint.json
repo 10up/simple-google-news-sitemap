@@ -24,7 +24,7 @@
       "step": "importWxr",
       "file": {
         "resource": "url",
-        "url": "https://raw.githubusercontent.com/10up/simple-google-news-sitemap/c5d5fefcf613458ebc415064d0c5c10a4ab56193/.github/blueprints/sample-data.xml"
+        "url": "https://raw.githubusercontent.com/10up/simple-google-news-sitemap/6b5945d09130b8a853c090bcec0d9e15421c1cb6/.github/blueprints/sample-data.xml"
       }
     }
   ]
