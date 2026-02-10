@@ -1,0 +1,39 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/news-sitemap.xml",
+  "preferredVersions": {
+    "php": "7.4",
+    "wp": "latest"
+  },
+  "features": {
+    "networking": true
+  },
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginData": {
+          "resource": "git:directory",
+          "url": "https://github.com/10up/simple-google-news-sitemap",
+          "ref": "trunk"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp site empty --yes"
+    },
+    {
+      "step": "importWxr",
+      "file": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/10up/simple-google-news-sitemap/6b5945d09130b8a853c090bcec0d9e15421c1cb6/.github/blueprints/sample-data.xml"
+      }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post update 1 2 3 4 5 6 7 8 9 10 --post_date='0000-00-00 00:00:00' --post_date_gmt='0000-00-00 00:00:00'"
+    }
+  ]
+}
