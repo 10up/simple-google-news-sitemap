@@ -21,6 +21,10 @@
       }
     },
     {
+      "step": "wp-cli",
+      "command": "wp site empty --yes"
+    },
+    {
       "step": "importWxr",
       "file": {
         "resource": "url",
