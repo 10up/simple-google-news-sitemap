@@ -29,7 +29,7 @@ A simple Google News sitemap is generated on-the-fly for articles that were publ
 == Requirements ==
 
 - PHP 7.4+
-- [WordPress](http://wordpress.org/) 6.5+
+- [WordPress](http://wordpress.org/) 6.8+
 
 == Usage ==
 
