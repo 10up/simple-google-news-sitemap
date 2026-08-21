@@ -1,7 +1,7 @@
 === Simple Google News Sitemap ===
 Contributors:      10up, jeffpaul, dkotter, akshitsethi, ritteshpatel, brentvr
 Tags:              sitemap, Google News
-Tested up to:      7.0
+Tested up to:      7.1
 Stable tag:        1.1.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
