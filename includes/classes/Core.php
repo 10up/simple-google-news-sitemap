@@ -200,8 +200,9 @@ class Core {
 		 * If the publish date falls within the range, we flush cache.
 		 */
 		if (
-			'publish' === $old_status && in_array( $new_status, $post_statuses, true )
-			|| in_array( $old_status, $post_statuses, true ) && 'publish' === $new_status
+			( 'publish' === $old_status && in_array( $new_status, $post_statuses, true ) )
+			||
+			( in_array( $old_status, $post_statuses, true ) && 'publish' === $new_status )
 		) {
 			if ( $post_publish_date > $range ) {
 				return CacheUtils::delete_cache();
