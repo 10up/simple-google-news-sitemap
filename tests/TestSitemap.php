@@ -15,6 +15,9 @@ use WP_UnitTestCase;
  */
 class TestSitemap extends WP_UnitTestCase {
 
+	/**
+	 * Set up test.
+	 */
 	public function setUp(): void {
 		global $wp_rewrite;
 

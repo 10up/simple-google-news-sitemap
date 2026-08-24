@@ -15,10 +15,16 @@ use WP_UnitTestCase, WP_Mock, Mockery;
  */
 class TestCore extends WP_UnitTestCase {
 
+	/**
+	 * Set up test.
+	 */
 	public function setUp(): void {
 		WP_Mock::setUp();
 	}
 
+	/**
+	 * Tear down test.
+	 */
 	public function tearDown(): void {
 		$this->addToAssertionCount(
 			Mockery::getContainer()->mockery_getExpectationCount()
