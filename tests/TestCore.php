@@ -15,10 +15,16 @@ use WP_UnitTestCase, WP_Mock, Mockery;
  */
 class TestCore extends WP_UnitTestCase {
 
+	/**
+	 * Set up test.
+	 */
 	public function setUp(): void {
 		WP_Mock::setUp();
 	}
 
+	/**
+	 * Tear down test.
+	 */
 	public function tearDown(): void {
 		$this->addToAssertionCount(
 			Mockery::getContainer()->mockery_getExpectationCount()
@@ -48,7 +54,7 @@ class TestCore extends WP_UnitTestCase {
 		\WP_Mock::userFunction(
 			'get_query_var',
 			[
-				'return' => 'true'
+				'return' => 'true',
 			]
 		);
 
@@ -103,7 +109,7 @@ class TestCore extends WP_UnitTestCase {
 	public function testAddSitemapRobotsTxt() {
 		$this->set_permalink_structure( '/%postname%' );
 		$core = new Core();
-		$url = home_url( '/news-sitemap.xml' );
+		$url  = home_url( '/news-sitemap.xml' );
 
 		$this->assertEquals( "\nSitemap: {$url}\n", $core->add_sitemap_robots_txt( '' ) );
 	}
@@ -114,7 +120,7 @@ class TestCore extends WP_UnitTestCase {
 	public function testAddSitemapRobotsTxtPlainPermalinks() {
 		$this->set_permalink_structure( '' );
 		$core = new Core();
-		$url = add_query_arg( 'news-sitemap', 'true', home_url( '/' ) );
+		$url  = add_query_arg( 'news-sitemap', 'true', home_url( '/' ) );
 
 		$this->assertEquals( "\nSitemap: {$url}\n", $core->add_sitemap_robots_txt( '' ) );
 	}
@@ -143,7 +149,7 @@ class TestCore extends WP_UnitTestCase {
 		\WP_Mock::userFunction(
 			'get_option',
 			[
-				'return' => '0'
+				'return' => '0',
 			]
 		);
 
@@ -160,14 +166,14 @@ class TestCore extends WP_UnitTestCase {
 		\WP_Mock::userFunction(
 			'get_option',
 			[
-				'return' => '1'
+				'return' => '1',
 			]
 		);
 
 		\WP_Mock::userFunction(
 			'wp_remote_get',
 			[
-				'return' => 'INVALID_RESPONSE'
+				'return' => 'INVALID_RESPONSE',
 			]
 		);
 
@@ -184,7 +190,7 @@ class TestCore extends WP_UnitTestCase {
 		\WP_Mock::userFunction(
 			'get_option',
 			[
-				'return' => '1'
+				'return' => '1',
 			]
 		);
 
@@ -193,20 +199,19 @@ class TestCore extends WP_UnitTestCase {
 			[
 				'return' => [
 					'response' => [
-						'code' => 200
-					]
-				]
+						'code' => 200,
+					],
+				],
 			]
 		);
 
 		\WP_Mock::userFunction(
 			'is_wp_error',
 			[
-				'return' => false
+				'return' => false,
 			]
 		);
 
 		$this->assertTrue( $core->ping_google() );
 	}
-
 }
