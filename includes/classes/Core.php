@@ -297,5 +297,4 @@ class Core {
 
 		return $actions;
 	}
-
 }

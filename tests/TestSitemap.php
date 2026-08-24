@@ -19,7 +19,7 @@ class TestSitemap extends WP_UnitTestCase {
 		global $wp_rewrite;
 
 		$wp_rewrite->set_permalink_structure( '/%postname%/' );
-		update_option( "rewrite_rules", true );
+		update_option( 'rewrite_rules', true );
 		$wp_rewrite->flush_rules( true );
 	}
 
@@ -70,7 +70,7 @@ class TestSitemap extends WP_UnitTestCase {
 		$sitemap = new Sitemap();
 		$sitemap->build();
 
-		$data = $sitemap->get_data();
+		$data  = $sitemap->get_data();
 		$links = wp_list_pluck( $data, 'url' );
 		$ids   = wp_list_pluck( $data, 'ID' );
 
@@ -78,5 +78,4 @@ class TestSitemap extends WP_UnitTestCase {
 		$this->assertTrue( in_array( (int) $post_id, $ids, true ) );
 		$this->assertTrue( in_array( home_url() . '/test-post-two/', $links, true ) );
 	}
-
 }

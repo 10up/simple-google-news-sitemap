@@ -74,5 +74,4 @@ class CacheUtils {
 	public static function delete_cache(): bool {
 		return delete_transient( self::$cache_key );
 	}
-
 }

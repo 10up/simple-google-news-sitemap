@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * PSR-4 autoloading
  */
 spl_autoload_register(
-	function( $class ) {
+	function ( $class ) {
 		// Project-specific namespace prefix.
 		$prefix = 'SimpleGoogleNewsSitemap\\';
 		// Base directory for the namespace prefix.
@@ -64,7 +64,7 @@ $plugin_core->init();
  */
 register_activation_hook(
 	__FILE__,
-	function() use ( $plugin_core ) {
+	function () use ( $plugin_core ) {
 		$plugin_core->create_rewrites();
 		flush_rewrite_rules( false );
 	}
@@ -72,7 +72,7 @@ register_activation_hook(
 
 register_deactivation_hook(
 	__FILE__,
-	function() use ( $plugin_core ) {
+	function () use ( $plugin_core ) {
 		$plugin_core->remove_rewrites();
 		flush_rewrite_rules( false );
 	}
