@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/10up/simple-google-news-sitemap#readme",
   "devDependencies": {
-    "jsdoc": "^3.6.11",
+    "jsdoc": "^4.0.5",
     "wp-hookdoc": "^0.2.0"
   }
 }
