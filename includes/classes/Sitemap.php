@@ -93,6 +93,7 @@ class Sitemap {
 			$offset = 0;
 
 			while ( true ) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- date range varies per query, CacheUtils used for caching.
 				$results = $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_title, post_date FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = %s AND post_date >= %s ORDER BY post_date DESC LIMIT %d, %d", $post_type, $this->range, (int) $offset, (int) $this->process_page_size ), ARRAY_A );
 
 				if ( empty( $results ) ) {

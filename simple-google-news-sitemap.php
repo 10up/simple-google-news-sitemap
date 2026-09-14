@@ -31,17 +31,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * PSR-4 autoloading
  */
 spl_autoload_register(
-	function( $class ) {
+	function ( $class_name ) {
 		// Project-specific namespace prefix.
 		$prefix = 'SimpleGoogleNewsSitemap\\';
 		// Base directory for the namespace prefix.
 		$base_dir = __DIR__ . '/includes/classes/';
 		// Does the class use the namespace prefix?
 		$len = strlen( $prefix );
-		if ( strncmp( $prefix, $class, $len ) !== 0 ) {
+		if ( strncmp( $prefix, $class_name, $len ) !== 0 ) {
 			return;
 		}
-		$relative_class = substr( $class, $len );
+		$relative_class = substr( $class_name, $len );
 		$file           = $base_dir . str_replace( '\\', '/', $relative_class ) . '.php';
 		// If the file exists, require it.
 		if ( file_exists( $file ) ) {
@@ -64,7 +64,7 @@ $plugin_core->init();
  */
 register_activation_hook(
 	__FILE__,
-	function() use ( $plugin_core ) {
+	function () use ( $plugin_core ) {
 		$plugin_core->create_rewrites();
 		flush_rewrite_rules( false );
 	}
@@ -72,7 +72,7 @@ register_activation_hook(
 
 register_deactivation_hook(
 	__FILE__,
-	function() use ( $plugin_core ) {
+	function () use ( $plugin_core ) {
 		$plugin_core->remove_rewrites();
 		flush_rewrite_rules( false );
 	}
