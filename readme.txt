@@ -87,6 +87,10 @@ Once the above steps are completed, run `composer test` for running the unit tes
 
 == Frequently Asked Questions ==
 
+= Can AI agents read or rebuild the sitemap through the Abilities API? =
+
+Yes, on WordPress 6.9 and later. The plugin registers two abilities. `simple-google-news-sitemap/get-sitemap` returns the sitemap URL and the articles in it, and it requires the `edit_posts` capability. `simple-google-news-sitemap/regenerate-sitemap` clears the cache and builds the sitemap again, and it requires the `manage_options` capability. Regenerating does not ping Google.
+
 = Where do I report security bugs found in this plugin? =
 
 Please report security bugs found in the source code of the undefined plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/34c661b4-0881-4fd9-84f4-f03e723174e1).  The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
