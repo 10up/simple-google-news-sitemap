@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ## [Unreleased] - TBD
 
+### Added
+- Add `simple-google-news-sitemap/get-sitemap` and `simple-google-news-sitemap/regenerate-sitemap` abilities to the WordPress Abilities API so AI agents and other clients can read and rebuild the news sitemap ([#73](https://github.com/10up/simple-google-news-sitemap/issues/73)).
+
 ## [1.1.1] - 2024-08-20
 **Note that this release bumps the WordPress minimum version from 5.7 to 6.4.**
 
