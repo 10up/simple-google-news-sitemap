@@ -21,7 +21,14 @@ class Core {
 	 *
 	 * @var string
 	 */
-	private $sitemap_slug = 'news-sitemap';
+	const SITEMAP_SLUG = 'news-sitemap';
+
+	/**
+	 * News sitemap slug.
+	 *
+	 * @var string
+	 */
+	private $sitemap_slug = self::SITEMAP_SLUG;
 
 	/**
 	 * Setup hooks.
@@ -38,6 +45,23 @@ class Core {
 		add_action( 'delete_post', [ $this, 'purge_sitemap_data_on_delete' ], 1000, 2 );
 
 		add_filter( 'plugin_action_links_simple-google-news-sitemap/simple-google-news-sitemap.php', [ __CLASS__, 'sitemap_link' ], 10, 1 );
+
+		( new Abilities() )->init();
+	}
+
+	/**
+	 * Get the public URL of the news sitemap.
+	 *
+	 * @since x.x.x
+	 *
+	 * @return string
+	 */
+	public static function get_sitemap_url(): string {
+		if ( ! get_option( 'permalink_structure' ) ) {
+			return add_query_arg( self::SITEMAP_SLUG, 'true', home_url( '/' ) );
+		}
+
+		return home_url( sprintf( '/%s.xml', self::SITEMAP_SLUG ) );
 	}
 
 	/**
